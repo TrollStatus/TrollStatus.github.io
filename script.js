@@ -14,7 +14,7 @@ function detectIOSVersion() {
             document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
         }
     } else {
-        console.log("Not an iOS device.");
+        document.body.innerHTML= '<h1>Not an iOS device.</h1>';
     }
 }
 
