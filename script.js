@@ -8,7 +8,7 @@ function detectIOSVersion() {
         
         if (versionNumber < 16.5) {
             // Display greeting image
-            document.body.innerHTML = '<img src="greeting.jpg" alt="Greeting Image">';
+            document.body.innerHTML = '<img src="Trollface.jpg" alt="Greeting Image">';
         } else {
             // Display message for higher versions
             document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
