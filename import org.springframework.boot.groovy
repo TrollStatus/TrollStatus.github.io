@@ -21,7 +21,7 @@ class IosVersionController {
             if (version != null) {
                 double iosVersion = Double.parseDouble(version);
                 if (iosVersion < 16.5) {
-                    return "<html><body style='background: linear-gradient(45deg, #f3ec78, #af4261);'><h1>Welcome!</h1><img src='greeting.jpg' alt='Greeting Image'></body></html>";
+                    return "<html><body style='background: linear-gradient(45deg, #f3ec78, #af4261);'><h1>Welcome!</h1><img src='Trollface.jpg' alt='Greeting Image'></body></html>";
                 } else {
                     return "<html><body style='background: linear-gradient(45deg, #f3ec78, #af4261);'><h1>no jelbrek for u :(</h1></body></html>";
                 }
