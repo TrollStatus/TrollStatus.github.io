@@ -6,38 +6,37 @@
     <title>iOS Version Detector</title>
     <style>
         body {
-            background: linear-gradient(270deg, #ff7e5f, #feb47b);
-            animation: gradient 5s ease infinite;
-            color: white;
-            text-align: center;
+            margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(270deg, #ff7e5f, #feb47b);
+            animation: gradient 5s ease infinite;
         }
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        img { display: none; }
     </style>
 </head>
 <body>
+    <img id="greetImg" src="Trollface.jpg" alt="Greeting Image">
     <script>
-        const userAgent = navigator.userAgent;
-        const isIOS = /iPad|iPhone|iPod/.test(userAgent);
-        const versionMatch = userAgent.match(/OS (\d+_\d+)/);
-        const version = versionMatch ? versionMatch[1].replace('_', '.') : null;
+        const ua = navigator.userAgent;
+        const iOS = /iPad|iPhone|iPod/.test(ua);
+        const version = iOS ? parseFloat(ua.match(/OS (\d+_\d+)/)[1].replace('_', '.')) : null;
 
-        if (isIOS) {
-            if (parseFloat(version) < 16.5) {
-                document.body.innerHTML = '<img src="Trollface.jpg" alt="Greeting Image">';
-            } else {
-                document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
-            }
+        if (!iOS) {
+            alert("nice try ;)");
+        } else if (version < 16.5) {
+            document.getElementById('greetImg').style.display = 'block';
+        } else if (version === 16.6 || version === 16.6.1) {
+            alert("NathanLR ;)");
         } else {
-            document.body.innerHTML = '<h1>Nice try ;)</h1>';
+            alert("no jelbrek for u :(");
         }
     </script>
 </body>
