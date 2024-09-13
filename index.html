@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Version Detector</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, #ff7e5f, #feb47b);
+            animation: gradient 5s ease infinite;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const userAgent = navigator.userAgent;
+        const isIOS = /iPad|iPhone|iPod/.test(userAgent);
+        const versionMatch = userAgent.match(/OS (\d+_\d+)/);
+        const version = versionMatch ? versionMatch[1].replace('_', '.') : null;
+
+        if (isIOS) {
+            if (parseFloat(version) < 16.5) {
+                document.body.innerHTML = '<img src="greeting.jpg" alt="Greeting Image">';
+            } else {
+                document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
+            }
+        } else {
+            document.body.innerHTML = '<h1>Nice try ;)</h1>';
+        }
+    </script>
+</body>
+</html>
