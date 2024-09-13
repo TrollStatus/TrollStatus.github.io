@@ -7,7 +7,7 @@ function detectIOSVersion() {
                 const versionNumber = parseFloat(version);
                 
                 if (versionNumber < 16.5) {
-                    document.getElementById('message').innerHTML = '<img src="greeting.jpg" alt="Greeting Image">';
+                    document.getElementById('message').innerHTML = '<img src="Trollface.jpg" alt="Greeting Image">';
                 } else {
                     document.getElementById('message').innerText = "no jelbrek for u :(";
                 }
