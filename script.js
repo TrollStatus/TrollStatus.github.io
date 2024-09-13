@@ -1,22 +1,19 @@
 function detectIOSVersion() {
-    const userAgent = navigator.userAgent;
-    const iosVersionMatch = userAgent.match(/OS (\d+_\d+(_\d+)?)/);
-    
-    if (iosVersionMatch) {
-        const iosVersion = iosVersionMatch[1].replace(/_/g, '.');
-        const versionNumber = parseFloat(iosVersion);
-        
-        if (versionNumber < 16.5) {
-            // Display greeting image
-            document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
-        } else {
-            // Display message for higher versions
-            document.body.innerHTML = '<h1>No jelbrek for u :(</h1>';
+            const userAgent = navigator.userAgent;
+            const iosMatch = userAgent.match(/OS (\d+_\d+(_\d+)?)/);
+            
+            if (iosMatch) {
+                const version = iosMatch[1].replace(/_/g, '.');
+                const versionNumber = parseFloat(version);
+                
+                if (versionNumber < 16.5) {
+                    document.getElementById('message').innerHTML = '<img src="greeting.jpg" alt="Greeting Image">';
+                } else {
+                    document.getElementById('message').innerText = "no jelbrek for u :(";
+                }
+            } else {
+                document.getElementById('message').innerText = "nice try ;)";
+            }
         }
-    } else {
-        document.body.innerHTML= '<h1>Not an iOS device.</h1>';
-    }
-}
 
-// Call the function to execute
-detectIOSVersion();
+        detectIOSVersion();
