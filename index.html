@@ -30,10 +30,10 @@
         const version = versionMatch ? versionMatch[1].replace('_', '.') : null;
 
         if (iOS) {
-            if (version < 16.5) {
+            if (version < 16.5.1) {
                 document.body.innerHTML = '<img src="Trollface.jpg" alt="Greeting Image">';
             } else if (version === "16.6" || version === "16.6.1") {
-                document.body.innerHTML = '<h1>NathanLR ;)';
+                document.body.innerHTML = '<h1>NathanLR ;)</h1>';
             } else {
                 document.body.innerHTML = '<h1>no jelbrek for u :(</h1>';
             }
