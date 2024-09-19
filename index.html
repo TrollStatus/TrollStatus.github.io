@@ -21,8 +21,6 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-    </style>
-     <style>
         .faq-button {
             background-color: transparent;
             border: 2px solid #007BFF;
@@ -39,19 +37,19 @@
             top: 20px;
             right: 20px;
         }
-
         .faq-button:hover {
             background-color: white;
             color: #007BFF;
         }
+        #image {
+            display: none; /* Initially hide the image */
+        }
     </style>
 </head>
 <body>
-   <section id="faq-section">
-    <button onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
-</section>
+    <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
     <div id="message"></div>
-   <script>
+    <script>
         function detectIOSVersion() {
             try {
                 const userAgent = navigator.userAgent;
@@ -64,9 +62,10 @@
                         const minor = parseInt(match[2] || 0, 10);
                         const patch = parseInt(match[3] || 0, 10);
 
-                         if (major === 16 && minor <= 5) {
+                        if (major === 16 && minor <= 5) {
                             message = "Your device has 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
                             document.getElementById('image').src = 'Trollface.jpg';
+                            document.getElementById('image').style.display = 'inline';
                         } else if (major === 16 && minor === 6 && patch <= 1) {
                             message = "NathanLR";
                         } else if (major > 16 || (major === 16 && minor > 6)) {
@@ -90,6 +89,6 @@
 
         window.onload = detectIOSVersion;
     </script>
-    <img id="image" alt="Trollface" style="display:inline;" />
+    <img id="image" alt="Trollface" />
 </body>
 </html>
