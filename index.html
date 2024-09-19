@@ -27,7 +27,7 @@
     <script>
         const ua = navigator.userAgent;
         const iOS = /iPad|iPhone|iPod/.test(ua);
-        const versionMatch = ua.match(/OS (\d+_\d+)/);
+        const versionMatch = ua.match(/OS (\d+_\d+_\d+);
         const version = versionMatch ? versionMatch[1].replace('_', '.') : null;
 
         if (iOS) {
