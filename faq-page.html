@@ -9,19 +9,28 @@
     <title>FAQ</title>
     <style>
     
-    body {
-    background: linear-gradient(270deg, #0a3bc9, #383a41);
-    background-size: 400% 400%; 
-    animation: gradient 5s ease infinite;
-    height: 100vh;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    color: white;
-    font-family: Fira Sans Condensed, sans-serif;
-    position: relative;
-}
+     body {
+        background: linear-gradient(270deg, #0a3bc9, #383a41);
+        background-size: 400% 400%; 
+        animation: gradient 5s ease infinite;
+        height: 100vh;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        color: white;
+        font-family: Fira Sans Condensed, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 25px;
+        position: absolute; 
+        top: 20px; 
+        right: 20px; 
+    }
 
 
         @keyframes gradient {
@@ -30,14 +39,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        .button-container {
-            display: flex;
-            gap: 25px;
-            margin-top: 20px;
-            align-self: flex-end;
-        }
-
-        .home-button {
+         .home-button {
             background-color: transparent;
             border: 2px solid #007BFF;
             color: #007BFF;
