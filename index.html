@@ -23,7 +23,33 @@
     </style>
 </head>
 <body>
-     <script>
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrollStatus</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, #ff7e5f, #feb47b);
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="message"></div>
+    <script>
         function detectIOSVersion() {
             try {
                 const userAgent = navigator.userAgent;
@@ -61,5 +87,7 @@
 
         window.onload = detectIOSVersion;
     </script>
+</body>
+</html>
 </body>
 </html>
