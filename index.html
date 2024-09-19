@@ -9,23 +9,26 @@
       <title>TrollStatus</title>
       <style>
         
-        body {
-        background: linear-gradient(270deg, #ff7e5f, #feb47b);
-        animation: gradient 5s infinite;
-        height: 100vh;
-        display: flex;
-        flex-direction: column; 
-        justify-content: center; 
-        align-items: center; 
-        color: white;
-        font-family: Fira Sans Condensed, sans-serif;
-        position: relative;
-    }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+       body {
+    background: linear-gradient(270deg, #ff7e5f, #feb47b);
+    background-size: 400% 400%; 
+    animation: gradient 5s ease infinite;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    color: white;
+    font-family: Fira Sans Condensed, sans-serif;
+    position: relative;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
         .title {
             font-family: Fira Sans Condensed, sans-serif;
             font-size: 36px;
