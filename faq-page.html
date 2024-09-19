@@ -4,3 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ</title>
+    FAQ Section with Button
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .faq-section {
+            margin-top: 50px;
+        }
+        .faq-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .faq-button:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="faq-section">
+        <h1>Frequently Asked Questions</h1>
+        <p>Here you can find answers to common questions.</p>
+        <ul>
+            <li>What is this? - Just a very unconvenient project :P</li>
+            <li>Why? - I have too much time xD</li>
+            <li>-</li>
+            <li>-</li>
+        </ul>
+    </div>
+
+    <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
+
+</body>
+</html>
