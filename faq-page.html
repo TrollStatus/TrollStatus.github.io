@@ -6,6 +6,22 @@
     <title>FAQ</title>
     <style>
         body {
+            background: linear-gradient(270deg, #ff7e5f, #feb47b);
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
