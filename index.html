@@ -60,12 +60,21 @@
             background-color: white;
             color: #007BFF;
         }
+           .button-container {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
        </style>
 </head>
 <body>
  <div class="title">TrollStatus</div>
-    <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
+    <div class="button-container">
+      <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
       <button class="faq-button" style="top: 70px;" onclick="window.location.href='credits.html'">Go to Credits Page</button>
+     </div>
     <div id="message"></div>
     <script>
         function detectIOSVersion() {
