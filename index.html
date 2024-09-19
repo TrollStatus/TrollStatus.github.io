@@ -14,7 +14,7 @@
         justify-content: center; 
         align-items: center; 
         color: white;
-        font-family: Arial, sans-serif;
+        font-family: Aharoni, sans-serif;
         position: relative;
     }
         @keyframes gradient {
@@ -73,11 +73,11 @@
                         const patch = parseInt(match[3] || 0, 10);
 
                         if (major === 16 && minor <= 5) {
-                            message = "Your device has 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
+                            message = "Your device is on iOS 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
                             document.getElementById('image').src = 'Trollface.jpg';
                             document.getElementById('image').style.display = 'inline';
                         } else if (major === 16 && minor === 6 && patch <= 1) {
-                            message = "NathanLR";
+                            message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
                         } else if (major > 16 || (major === 16 && minor > 6)) {
                             message = "Your iOS-version is too new to be jailbroken :(";
                         } else {
