@@ -24,23 +24,43 @@
     </style>
 </head>
 <body>
-    <script>
-        const ua = navigator.userAgent;
-        const iOS = /iPad|iPhone|iPod/.test(ua);
-        const versionMatch = ua.match(/OS (\d+_\d+_\d+)/);
-        const version = versionMatch ? versionMatch[1].replace('_', '.') : null;
+     <script>
+        function detectIOSVersion() {
+            try {
+                const userAgent = navigator.userAgent;
+                let message = '';
 
-        if (iOS) {
-            if (version < 16.5.1) {
-                document.body.innerHTML = '<img src="Trollface.jpg" alt="Greeting Image">';
-            } else if (version === "16.6" || version === "16.6.1") {
-                document.body.innerHTML = '<h1>NathanLR ;)</h1>';
-            } else {
-                document.body.innerHTML = '<h1>no jelbrek for u :(</h1>';
+                if (/iPhone|iPad|iPod/.test(userAgent)) {
+                    const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
+                    if (match) {
+                        const major = parseInt(match[1], 10);
+                        const minor = parseInt(match[2] || 0, 10);
+                        const patch = parseInt(match[3] || 0, 10);
+
+                        if (major === 16 && minor <= 5) {
+                            message = "You're using iOS 16.5 or lower. Please consider updating for the best experience!";
+                        } else if (major === 16 && minor === 6 && patch <= 1) {
+                            message = "You're on iOS 16.6 to 16.6.1. Enjoy your time!";
+                        } else if (major > 16 || (major === 16 && minor > 6)) {
+                            message = "Great! You're using a version newer than iOS 16.6.1.";
+                        } else {
+                            message = "Oops! Your iOS version is not recognized.";
+                        }
+                    } else {
+                        message = "Oops! Your iOS version is not recognized.";
+                    }
+                } else {
+                    message = "You're not using an iOS device. Welcome!";
+                }
+
+                document.getElementById('message').innerText = message;
+            } catch (error) {
+                console.error("An error occurred while detecting the iOS version:", error);
+                document.getElementById('message').innerText = "An error occurred while detecting your device.";
             }
-        } else {
-            document.body.innerHTML = '<h1>nice try ;)</h1>';
         }
+
+        window.onload = detectIOSVersion;
     </script>
 </body>
 </html>
