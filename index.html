@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>TrollStatus</title>
+      <style>
+        
+       body {
+    background: linear-gradient(270deg, #0a3bc9, #383a41);
+    background-size: 400% 400%; 
+    animation: gradient 5s ease infinite;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    color: white;
+    font-family: Fira Sans Condensed, sans-serif;
+    position: relative;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+        .title {
+            font-family: Fira Sans Condensed, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        #image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: none;
+        }
+        .button-container {
+        display: flex;
+        gap: 25px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .faq-button {
+        background-color: transparent;
+        border: 2px solid #007BFF;
+        color: #007BFF;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+    .faq-button:hover {
+        background-color: white;
+        color: #007BFF;
+    }
+       </style>
+</head>
+<body>
+ <div class="title">TrollStatus</div>
+    <div class="button-container">
+      <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
+      <button class="faq-button" style="top: 70px;" onclick="window.location.href='credits.html'">Go to Credits Page</button>
+     </div>
+    <div id="message"></div>
+    <script>
+        function detectIOSVersion() {
+            try {
+                const userAgent = navigator.userAgent;
+                let message = '';
+
+                if (/iPhone|iPad|iPod/.test(userAgent)) {
+                    const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
+                    if (match) {
+                        const major = parseInt(match[1], 10);
+                        const minor = parseInt(match[2] || 0, 10);
+                        const patch = parseInt(match[3] || 0, 10);
+
+                        if (major === 16 && minor <= 5) {
+                            message = "Your device is on iOS 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
+                            document.getElementById('image').src = 'Trollface.jpg';
+                            document.getElementById('image').style.display = 'inline';
+                        } else if (major === 16 && minor === 6 && patch <= 1) {
+                            message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
+                        } else if (major > 16 || (major === 16 && minor > 6)) {
+                            message = "Your iOS-version is too new to be jailbroken :(";
+                        } else {
+                            message = "Oops! Your device was not recognised";
+                        }
+                    } else {
+                        message = "Oops! Your device is not an iPhone";
+                    }
+                } else {
+                    message = "You're not using an iOS device!";
+                }
+
+                document.getElementById('message').innerText = message;
+            } catch (error) {
+                console.error("An error occurred while detecting the iOS version:", error);
+                document.getElementById('message').innerText = "An error occurred while detecting your device.";
+            }
+        }
+
+        window.onload = detectIOSVersion;
+    </script>
+    <img id="image" alt="Trollface" />
+</body>
+</html>
