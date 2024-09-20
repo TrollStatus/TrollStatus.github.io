@@ -15,24 +15,22 @@
             height: 100vh;
             display: flex;
             flex-direction: column; 
-            justify-content: flex-start;
-            align-items: flex-start; 
+            justify-content: center;
+            align-items: center; 
             color: white;
             font-family: Fira Sans Condensed, sans-serif;
             position: relative;
             padding: 20px; 
         }
-        .faq-section {
-            z-index: 1; 
-            position: center; 
-            margin-top: ; 
-        }
         .title {
             font-family: Fira Sans Condensed, sans-serif;
             font-size: 36px;
             margin-bottom: 20px;
-            position: flex;
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
+
         .button-container {
             display: flex;
             gap: 25px;
@@ -40,11 +38,13 @@
             top: 20px; 
             right: 20px; 
         }
+
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
         .home-button {
             background-color: transparent;
             border: 2px solid #007BFF;
@@ -58,6 +58,7 @@
             cursor: pointer;
             border-radius: 25px;
         }
+
         .home-button:hover {
             background-color: white;
             color: #007BFF;
