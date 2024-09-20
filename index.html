@@ -137,7 +137,7 @@
     </style>
 </head>
 <body>
-    <div class="title">TrollStatus</div>
+   <div class="title">TrollStatus</div>
     <div class="button-container">
         <button class="menu-button" onclick="toggleDropdown()">Menu</button>
         <div class="dropdown" id="dropdown">
@@ -146,8 +146,11 @@
         </div>
     </div>
     <div id="message"></div>
-    <img id="image" alt="Trollface" />
-    <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">visit ios.cfw.guide</button>
+    
+    <div id="tintedBox" style="background-color: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; text-align: center; margin-top: 20px;">
+        <img id="image" alt="Trollface" />
+        <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">Visit ios.cfw.guide</button>
+    </div>
 
     <div class="footer-text">Made in Finland</div>
     <script>
