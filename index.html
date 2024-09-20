@@ -105,25 +105,25 @@
         .dropdown button:hover {
             background-color: #007BFF;
         }
-        .loader {
-            width: 100%;
-            height: 5px;
-            background-color: #f3f3f3;
-            border-radius: 5px;
-            position: relative;
-            display: none;
-            align-self: center;
-            margin-top: 20px;
-        }
-        .loader::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            background-color: #3498db;
-            animation: loading 2s linear infinite;
-            border-radius: 5px;
-        }
+          .loader {
+        width: 100%; 
+        height: 5px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        position: relative;
+        display: none;
+        align-self: center;
+        margin-top: 20px;
+    }
+    .loader::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        animation: loading 2s linear infinite;
+        border-radius: 5px;
+    }
         @keyframes loading {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
