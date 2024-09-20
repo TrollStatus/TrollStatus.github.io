@@ -26,18 +26,25 @@
             align-self: center; 
             margin-top: 310px;
             background-color: rgba(255, 255, 255, 0.1);
-            border: none; 
+            border: none;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
             width: 80%;
             transition: opacity 0.5s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
 
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .title {
@@ -78,6 +85,33 @@
             background-color: white;
             color: #007BFF;
         }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #383a41;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .dropdown.show {
+            display: block;
+            opacity: 1;
+        }
+        .dropdown button {
+            display: block;
+            width: 100%;
+            border: none;
+            background: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+        }
+        .dropdown button:hover {
+            background-color: #007BFF;
+        }
         .footer-text {
             position: absolute;
             bottom: 20px;
@@ -89,12 +123,10 @@
         .visit-button {
             display: none;
             margin-top: 20px;
-            background-color: #007BFF;
-            border: none;
-            color: white;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
         }
@@ -158,6 +190,7 @@
                     }
 
                     document.getElementById('message').innerText = message;
+                    document.getElementById('message').style.opacity = 1;
                     document.getElementById('visitButton').style.display = 'block';
                 } catch (error) {
                     console.error("An error occurred while detecting the iOS version:", error);
