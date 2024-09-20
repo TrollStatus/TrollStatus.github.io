@@ -4,35 +4,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>TrollStatus</title>
-      <style>
-        
-       body {
-    background: linear-gradient(270deg, #0a3bc9, #383a41);
-    background-size: 400% 400%; 
-    animation: gradient 5s ease infinite;
-    height: 100vh;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    color: white;
-    font-family: Fira Sans Condensed, sans-serif;
-    position: relative;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrollStatus</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, #0a3bc9, #383a41);
+            background-size: 400% 400%; 
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start;
+            align-items: flex-end; 
+            color: white;
+            font-family: Fira Sans Condensed, sans-serif;
+            position: relative;
+            padding: 20px;
+        }
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         .title {
             font-family: Fira Sans Condensed, sans-serif;
             font-size: 36px;
             margin-bottom: 20px;
+            align-self: flex-end;
         }
         #image {
             border-radius: 50%;
@@ -41,37 +42,37 @@
             display: none;
         }
         .button-container {
-        display: flex;
-        gap: 25px;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-    .faq-button {
-        background-color: transparent;
-        border: 2px solid #007BFF;
-        color: #007BFF;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        transition: background-color 0.3s, color 0.3s;
-        cursor: pointer;
-        border-radius: 25px;
-    }
-    .faq-button:hover {
-        background-color: white;
-        color: #007BFF;
-    }
-       </style>
+            display: flex;
+            gap: 25px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .faq-button {
+            background-color: transparent;
+            border: 2px solid #007BFF;
+            color: #007BFF;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        .faq-button:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+    </style>
 </head>
 <body>
- <div class="title">TrollStatus</div>
+    <div class="title">TrollStatus</div>
     <div class="button-container">
-      <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
-      <button class="faq-button" style="top: 70px;" onclick="window.location.href='credits.html'">Go to Credits Page</button>
-     </div>
+        <button class="faq-button" onclick="window.location.href='faq-page.html'">Go to FAQ Page</button>
+        <button class="faq-button" style="top: 70px;" onclick="window.location.href='credits.html'">Go to Credits Page</button>
+    </div>
     <div id="message"></div>
     <script>
         function detectIOSVersion() {
