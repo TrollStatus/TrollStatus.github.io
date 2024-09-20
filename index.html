@@ -37,6 +37,9 @@
             font-family: Fira Sans Condensed, sans-serif;
             font-size: 36px;
             margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
         #image {
             border-radius: 35%;
@@ -47,64 +50,57 @@
             align-self: center;
         }
         .button-container {
+            display: flex;
+            gap: 25px;
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px; 
         }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropbtn {
+        .faq-button {
             background-color: transparent;
             border: 2px solid #007BFF;
             color: #ffffff;
             padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
             font-size: 16px;
-            border-radius: 25px;
-            cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            border-radius: 25px;
         }
-        .dropbtn:hover {
+        .faq-button:hover {
             background-color: white;
             color: #007BFF;
         }
-        .dropdown-content {
+        .loader {
+            border: 8px solid #f3f3f3; 
+            border-top: 8px solid #3498db; 
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
             display: none;
-            position: absolute;
-            background-color: #383a41;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            align-self: center;
+            margin-top: 20px;
         }
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #007BFF;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="title">TrollStatus</div>
     <div class="button-container">
-        <div class="dropdown">
-            <button class="dropbtn">Menu</button>
-            <div class="dropdown-content">
-                <a href="faq-page.html">FAQ</a>
-                <a href="credits.html">Credits</a>
-            </div>
-        </div>
+        <button class="faq-button" onclick="window.location.href='faq-page.html'">FAQ</button>
+        <button class="faq-button" onclick="window.location.href='credits.html'">Credits</button>
     </div>
     <div id="message"></div>
+    <div class="loader" id="loader"></div>
     <script>
         function detectIOSVersion() {
+            document.getElementById('loader').style.display = 'block';
             try {
                 const userAgent = navigator.userAgent;
                 let message = '';
@@ -140,6 +136,8 @@
             } catch (error) {
                 console.error("An error occurred while detecting the iOS version:", error);
                 document.getElementById('message').innerText = "An error occurred while detecting your device.";
+            } finally {
+                document.getElementById('loader').style.display = 'none';
             }
         }
 
