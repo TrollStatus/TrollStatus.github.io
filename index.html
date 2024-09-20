@@ -31,13 +31,20 @@
             padding: 20px;
             text-align: center;
             width: 80%;
+            transition: opacity 0.5s ease;
             opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
 
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .title {
@@ -78,6 +85,33 @@
             background-color: white;
             color: #007BFF;
         }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #383a41;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .dropdown.show {
+            display: block;
+            opacity: 1;
+        }
+        .dropdown button {
+            display: block;
+            width: 100%;
+            border: none;
+            background: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+        }
+        .dropdown button:hover {
+            background-color: #007BFF;
+        }
         .footer-text {
             position: absolute;
             bottom: 20px;
@@ -85,6 +119,19 @@
             transform: translateX(-50%);
             text-align: center;
             color: white;
+        }
+        .visit-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .visit-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -97,11 +144,11 @@
             <button onclick="window.location.href='credits.html'">Credits</button>
         </div>
     </div>
-    <div id="message">
-        <div id="ios-message"></div>
-        <img id="image" alt="Trollface" />
-        <div class="visit-link" style="margin-top: 10px;">Visit <a href="https://ios.cfw.guide" style="color: #007BFF; text-decoration: underline;">ios.cfw.guide</a> for instructions.</div>
-    </div>
+    <div id="message"></div>
+    <img id="image" alt="Trollface" />
+    <div id="ios-message"></div>
+    <div class="visit-link" style="margin-top: 10px;">Visit <a href="https://ios.cfw.guide" style="color: #007BFF; text-decoration: underline;">ios.cfw.guide</a> for instructions.</div>
+    <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">Visit Site</button>
 
     <div class="footer-text">Made in Finland</div>
     <script>
@@ -147,6 +194,7 @@
 
                     document.getElementById('message').innerText = message;
                     document.getElementById('message').style.opacity = 1;
+                    document.getElementById('visitButton').style.display = 'block';
                     document.getElementById('ios-message').innerText = message;
 
                 } catch (error) {
