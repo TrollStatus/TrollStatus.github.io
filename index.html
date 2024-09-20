@@ -4,35 +4,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>TrollStatus</title>
-      <style>
-        
-       body {
-        background: linear-gradient(270deg, #0a3bc9, #383a41);
-        background-size: 400% 400%; 
-        animation: gradient 5s ease infinite;
-        height: 100vh;
-        display: flex;
-        flex-direction: column; 
-        justify-content: flex-start;
-        align-items: flex-start; 
-        color: white;
-        font-family: Fira Sans Condensed, sans-serif;
-        position: relative;
-        padding: 20px; 
-}
-           #message {
-        align-self: center; 
-        margin-top: 310px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrollStatus</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, #0a3bc9, #383a41);
+            background-size: 400% 400%; 
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start;
+            align-items: flex-start; 
+            color: white;
+            font-family: Fira Sans Condensed, sans-serif;
+            position: relative;
+            padding: 20px; 
+        }
+        #message {
+            align-self: center; 
+            margin-top: 310px;
+        }
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         .title {
             font-family: Fira Sans Condensed, sans-serif;
@@ -48,37 +47,61 @@
             align-self: center;
         }
         .button-container {
-        display: flex;
-        gap: 25px;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
-    .faq-button {
-        background-color: transparent;
-        border: 2px solid #007BFF;
-        color: #ffffff;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        transition: background-color 0.3s, color 0.3s;
-        cursor: pointer;
-        border-radius: 25px;
-    }
-    .faq-button:hover {
-        background-color: white;
-        color: #007BFF;
-    }
-       </style>
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            background-color: transparent;
+            border: 2px solid #007BFF;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dropbtn:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #383a41;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #007BFF;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <div class="title">TrollStatus</div>
+    <div class="title">TrollStatus</div>
     <div class="button-container">
-      <button class="faq-button" onclick="window.location.href='faq-page.html'">FAQ</button>
-      <button class="faq-button" style="top: 70px;" onclick="window.location.href='credits.html'">Credits</button>
-     </div>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="faq-page.html">FAQ</a>
+                <a href="credits.html">Credits</a>
+            </div>
+        </div>
+    </div>
     <div id="message"></div>
     <script>
         function detectIOSVersion() {
@@ -97,16 +120,15 @@
                             message = "Your device is on iOS 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
                             document.getElementById('image').src = 'Trollface.jpg';
                             document.getElementById('image').style.display = 'inline';
-                             } else if (major === 16 && minor === 5 && patch <= 1) {
+                        } else if (major === 16 && minor === 5 && patch <= 1) {
                             message = "NathanLR is the recommended tool for you, as you're on iOS 16.5.1";
-                             } else if (major === 16 && minor === 6 && patch <= 1) {
+                        } else if (major === 16 && minor === 6 && patch <= 1) {
                             message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
-                             } else if (major > 16 || (major === 16 && minor > 6)) {
+                        } else if (major > 16 || (major === 16 && minor > 6)) {
                             message = "Your iOS-version is too new to be jailbroken :(";
-                             } else {
+                        } else {
                             message = "Oops! Your device was not recognised";
                         }
-
                     } else {
                         message = "Oops! Your device is not an iPhone";
                     }
