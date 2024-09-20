@@ -4,55 +4,60 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>TrollStatus</title>
-      <style>
-         body {
-          background: linear-gradient(270deg, #0a3bc9, #383a41);
-          background-size: 400% 400%; 
-          animation: gradient 5s ease infinite;
-          height: 100vh;
-          display: flex;
-          flex-direction: column; 
-          justify-content: center; 
-          align-items: center; 
-          color: white;
-          font-family: Fira Sans Condensed, sans-serif;
-          position: relative;
-          margin: 0;
-          padding: 20px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrollStatus</title>
+    <style>
+        body {
+            background: linear-gradient(270deg, #0a3bc9, #383a41);
+            background-size: 400% 400%; 
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: white;
+            font-family: Fira Sans Condensed, sans-serif;
+            position: relative;
+            margin: 0;
+            padding: 20px;
+        }
 
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
          
-         h1 {
+        h1 {
             text-align: center;
             color: #333;
         }
-          .credits-list, .testers-list {
+        
+        .credits-list, .testers-list {
             list-style-type: none;
             padding: 0;
             margin: 20px 0;
-            background: #fff;
+            background: linear-gradient(135deg, #d3d3d3, #a9a9a9);
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
-           .credits-list li, .testers-list li {
+        
+        .credits-list li, .testers-list li {
             padding: 10px;
             border-bottom: 1px solid #333;
-            color: #333
+            color: #333;
+            text-align: center;
         }
-           .credits-list li:last-child, .testers-list li:last-child {
+        
+        .credits-list li:last-child, .testers-list li:last-child {
             border-bottom: none;
         }
-
-</style>
-
+    </style>
+</head>
+<body>
     <h1>Credits & Testers</h1>
 
     <h2>Credits</h2>
@@ -68,6 +73,5 @@
         <li>vahapalli</li>
         <li>Magic</li>
     </ul>
-
 </body>
 </html>
