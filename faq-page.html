@@ -15,26 +15,23 @@
             height: 100vh;
             display: flex;
             flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
+            justify-content: flex-start;
+            align-items: flex-start; 
             color: white;
             font-family: Fira Sans Condensed, sans-serif;
             position: relative;
             padding: 20px; 
         }
+        .faq-section {
+            z-index: 1; 
+            position: relative; 
+            margin-top: 20px; 
+        }
         .title {
             font-family: Fira Sans Condensed, sans-serif;
             font-size: 36px;
             margin-bottom: 20px;
-            position: absolute; 
-            top: 20px; 
-            left: 20px;
         }
-
-        .faq-section {
-            text-align: center; 
-        }
-
         .button-container {
             display: flex;
             gap: 25px;
@@ -42,8 +39,47 @@
             top: 20px; 
             right: 20px; 
         }
-
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-            100% { background-position
+            100% { background-position: 0% 50%; }
+        }
+        .home-button {
+            background-color: transparent;
+            border: 2px solid #007BFF;
+            color: #007BFF;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        .home-button:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="faq-section">
+        <h1>Frequently Asked Questions</h1>
+        <p>Here you can find answers to common questions.</p>
+        <ul>
+            <li>What is this? - Just a very inconvenient project :P</li>
+            <li>Why? - I have too much time xD</li>
+            <li>Why does this site tell incorrectly that my iOS-version isn't supported? - I likely messed something up, or it's because you're using an arm64 device, and this site is aimed for arm64e currently.</li>
+            <li>Also! Please report any unexpected errors in Reddit.</li>
+        </ul>
+    </div>
+ 
+    <div class="button-container">
+        <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+        <button class="home-button" style="top: 70px;" onclick="window.location.href='credits.html'">Credits</button>
+    </div>
+    <div class="title">TrollStatus</div>
+</body>
+</html>
