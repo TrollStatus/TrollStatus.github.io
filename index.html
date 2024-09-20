@@ -146,7 +146,11 @@
     </div>
     <div id="message"></div>
     <img id="image" alt="Trollface" />
-    <button class="visit-button" id="visitButton" onclick="window.open('https://ios.cfw.guide', '_blank')">Visit ios.cfw.guide</button>
+    <div id="message">
+    <div id="ios-message"></div>
+    <div class="visit-link" style="margin-top: 10px;">Visit <a href="https://ios.cfw.guide" style="color: #007BFF; text-decoration: underline;">ios.cfw.guide</a> for instructions.</div>
+</div>
+
     <div class="footer-text">Made in Finland</div>
     <script>
         function toggleDropdown() {
@@ -192,6 +196,8 @@
                     document.getElementById('message').innerText = message;
                     document.getElementById('message').style.opacity = 1;
                     document.getElementById('visitButton').style.display = 'block';
+                    document.getElementById('ios-message').innerText = message;
+
                 } catch (error) {
                     console.error("An error occurred while detecting the iOS version:", error);
                     document.getElementById('message').innerText = "An error occurred while detecting your device.";
