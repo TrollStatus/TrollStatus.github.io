@@ -129,6 +129,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            align-self: center;
         }
         .visit-button:hover {
             background-color: #0056b3;
@@ -146,9 +147,7 @@
     </div>
     <div id="message"></div>
     <img id="image" alt="Trollface" />
-    <div id="ios-message"></div>
-    <div class="visit-link" style="margin-top: 10px;">Visit <a href="https://ios.cfw.guide" style="color: #007BFF; text-decoration: underline;">ios.cfw.guide</a> for instructions.</div>
-    <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">Visit Site</button>
+    <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">visit ios.cfw.guide</button>
 
     <div class="footer-text">Made in Finland</div>
     <script>
@@ -195,7 +194,6 @@
                     document.getElementById('message').innerText = message;
                     document.getElementById('message').style.opacity = 1;
                     document.getElementById('visitButton').style.display = 'block';
-                    document.getElementById('ios-message').innerText = message;
 
                 } catch (error) {
                     console.error("An error occurred while detecting the iOS version:", error);
