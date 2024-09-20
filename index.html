@@ -71,9 +71,28 @@
         background-color: white;
         color: #007BFF;
     }
+              .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
        </style>
 </head>
 <body>
+    <div class="marquee">
+    <div class="marquee-content">
+       TrollStatus marquee
+    </div>
  <div class="title">TrollStatus</div>
     <div class="button-container">
       <button class="faq-button" onclick="window.location.href='faq-page.html'">FAQ</button>
