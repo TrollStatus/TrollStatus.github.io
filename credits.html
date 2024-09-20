@@ -20,6 +20,8 @@
           color: white;
           font-family: Arial, sans-serif;
           position: relative;
+          margin: 0;
+          padding: 20px;
 }
 
 @keyframes gradient {
@@ -27,9 +29,44 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
+         
+         h1 {
+            text-align: center;
+            color: #333;
         }
+          .credits-list, .testers-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+           .credits-list li, .testers-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+           .credits-list li:last-child, .testers-list li:last-child {
+            border-bottom: none;
+        }
+
 </style>
+
+    <h1>Credits & Testers</h1>
+
+    <h2>Credits</h2>
+    <ul class="credits-list">
+        <li>Github for instruction on how to use Pages</li>
+        <li>Grandpa for the Javascript help</li>
+        <li>Energy drinks for keeping me awake</li>
+    </ul>
+
+    <h2>Testers</h2>
+    <ul class="testers-list">
+        <li>Grandpa</li>
+        <li>vahapalli</li>
+        <li>Magic</li>
+    </ul>
+
+</body>
+</html>
