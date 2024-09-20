@@ -29,6 +29,32 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+         .button-container {
+        display: flex;
+        gap: 25px;
+        position: absolute; 
+        top: 20px; 
+        right: 20px; 
+    }
+         .home-button {
+            background-color: transparent;
+            border: 2px solid #007BFF;
+            color: #007BFF;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        .home-button:hover {
+            background-color: white;
+            color: #007BFF;
+        }
          
         h1 {
             text-align: center;
@@ -73,5 +99,9 @@
         <li>vahapalli</li>
         <li>Magic</li>
     </ul>
+ <div class="button-container">
+        <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+        <button class="home-button" style="top: 70px;" onclick="window.location.href='faq-page.html'">FAQ</button>
+    </div>
 </body>
 </html>
