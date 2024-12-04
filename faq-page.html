@@ -95,13 +95,162 @@
     </div>
  
     
-        <div class="button-container">
-        <button class="menu-button" onclick="toggleDropdown()">Menu</button>
-        <div class="dropdown" id="dropdown">
-            <button onclick="window.location.href='index.html'">Home</button>
-            <button onclick="window.location.href='credits.html'">Credits</button>
-        </div>
+       <div class="dropdown">
+  <div class="select">
+    <span class="selected">Menu</span>
+    <div class="caret"></div>
     </div>
+    <ul class="menu">
+      <li>Home</li>
+      <li>FAQ</li>
+      <li>Credits</li>
+      <li class "active">Menu</li>
+    </ul>
+  </div>
+
+<div class="dropdown">
+  <div class="select">
+    <span class="selected">Reddit</span>
+    <div class="caret"></div>
+  </div>
+
+
+body {
+ font-family: Fira Sans Condensed, sans-serif;
+ backround: #23242a;
+ min-height: 100vh;
+ display; flex;
+ justify-content; center;
+ align-items: center;
+ flex-wrap: wrap;
+}
+
+.dropdown {
+  min-width: 15em:
+  position: relative;
+  margin: 2em;
+}
+ .dropdown * {
+   box-sizing: border-box;
+}
+
+.select {
+  backround: #2a2f3b;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px #2a2f3b solid;
+  border-radius: 0.5em;
+  padding: 1em;
+  cursor: pointer;
+  transition: backround 0.3s;
+}
+
+.selected-clicked {
+  border: 2px #26489a solid;
+  box-shadows: 0 0 0.8em #26489a;
+}
+
+.selected:hover {
+  backround: #323741;
+}
+
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+  transition: 0.3s;
+}
+
+.caret-rotate {
+  transform: rotate(180deg);
+}
+ .menu {
+   list-style: none;
+   padding: 0.2em 0.5em;
+   backround: #323741;
+   border: 1px #363a43 solid;
+   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+   border-radius: 0.5em;
+   color: #9fa5b5;
+   position: absolute;
+   top: 3em;
+   left: 50%;
+   width: 100%;
+   transform: translateX(-50%);
+   opacity: 0;
+   display: none;
+   transition: 0.2s;
+   z-index: 1;
+}
+
+.menu li {
+  padding: 0.7em 0.6em;
+  margin: 0.3em 0;
+  border-radius: 0.5em;
+  cursor: pointer;
+
+}
+
+.menu li:hover {
+  backround: #2a2d35;
+}
+
+.active {
+  backround: #23242a;
+}
+
+.menu-open {
+  display: block;
+  opacity: 1;
+}
+    <script>
+
+const dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(dropdown => {
+
+const select = dropdown.querySelector('.select');
+const caret = dropdown.querySelector('.caret');
+const menu = dropdown.querySelector('.menu');
+const options = dropdown.querySelector('.menu li');
+const selected = dropdown.querySelector('.selected');
+
+select.addEventListener('click', () => {
+
+select.classList.toggle('select.clicked');
+
+caret.classList.toggle('caret-rotate');
+
+menu.classList.toggle('menu-open');
+});
+
+options.forEach(option => {
+
+ options.addEventListener('click', () => {
+
+  selected.innerText = option.innerText;
+
+  select.classList.remove('selected-clicked');
+
+  caret.classList.remove('caret-rotate');
+
+  menu.classList.remove('menu-open');
+
+  options.forEach(option => {
+   option.classList.remove('active');
+  });
+
+   option.classList.add('active');
+  });
+ });
+});
+
+    </script>
+
     <div class="title">TrollStatus</div>
 </body>
 </html>
