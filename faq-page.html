@@ -78,9 +78,13 @@
         </ul>
     </div>
  
-    <div class="button-container">
-        <button class="home-button" onclick="window.location.href='index.html'">Home</button>
-        <button class="home-button" style="top: 70px;" onclick="window.location.href='credits.html'">Credits</button>
+    
+        <div class="button-container">
+        <button class="menu-button" onclick="toggleDropdown()">Menu</button>
+        <div class="dropdown" id="dropdown">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="window.location.href='credits.html'">Credits</button>
+        </div>
     </div>
     <div class="title">TrollStatus</div>
 </body>
