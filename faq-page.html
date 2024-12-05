@@ -62,16 +62,14 @@
         }
 
         .faq-section {
-            background-color: rgba(128, 128, 128, 0.8);
+            background-color: rgba(128, 128, 128, 0.5);
             padding: 20px;
             border-radius: 10px;
             margin-top: 60px;
         }
 
         .dropdown {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: relative;
             display: inline-block;
         }
 
@@ -105,6 +103,12 @@
             max-height: 0;
         }
 
+        .menu.open {
+            display: block;
+            max-height: 200px;
+            opacity: 1;
+        }
+
         .menu li {
             list-style: none;
         }
@@ -118,12 +122,6 @@
 
         .menu li a:hover {
             background-color: #575757;
-        }
-
-        .dropdown:hover .menu {
-            display: block;
-            max-height: 200px;
-            opacity: 1;
         }
     </style>
 </head>
@@ -164,18 +162,15 @@
             const selected = dropdown.querySelector('.selected');
 
             select.addEventListener('click', () => {
-                select.classList.toggle('selected-clicked');
+                menu.classList.toggle('open');
                 caret.classList.toggle('caret-rotate');
-                menu.classList.toggle('menu-open');
-                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
             });
 
             options.forEach(option => {
                 option.addEventListener('click', () => {
                     selected.innerText = option.innerText;
-                    select.classList.remove('selected-clicked');
+                    menu.classList.remove('open');
                     caret.classList.remove('caret-rotate');
-                    menu.classList.remove('menu-open');
 
                     options.forEach(opt => {
                         opt.classList.remove('active');
@@ -190,3 +185,4 @@
     <div class="title">TrollStatus</div>
 </body>
 </html>
+
