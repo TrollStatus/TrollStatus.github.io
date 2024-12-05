@@ -61,7 +61,70 @@
             100% { background-position: 0% 50%; }
         }
 
-       
+        .faq-section {
+            background-color: rgba(128, 128, 128, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 60px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: inline-block;
+        }
+
+        .select {
+            background-color: #333; 
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .caret {
+            display: inline-block;
+            margin-left: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            padding: 3px;
+            transform: rotate(45deg);
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            overflow: hidden;
+            opacity: 0;
+            max-height: 0;
+        }
+
+        .menu li {
+            list-style: none;
+        }
+
+        .menu li a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu li a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .menu {
+            display: block;
+            max-height: 200px;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -77,73 +140,18 @@
         </ul>
     </div>
  
- <style>
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .select {
-        background-color: #333; 
-        color: white;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    .caret {
-        display: inline-block;
-        margin-left: 10px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        padding: 3px;
-        transform: rotate(45deg);
-    }
-
-    .menu {
-        display: none;
-        position: absolute;
-        background-color: #333;
-        min-width: 160px;
-        z-index: 1;
-        border-radius: 5px;
-        transition: max-height 0.3s ease;
-        overflow: hidden;
-    }
-
-    .menu li {
-        list-style: none;
-    }
-
-    .menu li a {
-        color: white;
-        padding: 10px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .menu li a:hover {
-        background-color: #575757;
-    }
-
-    .dropdown:hover .menu {
-        display: block;
-        max-height: 200px;
-    }
-</style>
-
-<div class="dropdown">
-    <div class="select">
-        <span class="selected">Menu</span>
-        <div class="caret"></div>
+    <div class="dropdown">
+        <div class="select">
+            <span class="selected">Menu</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="credits.html">Credits</a></li>
+            <li class="active"><a href="https://www.reddit.com" target="_blank">Reddit</a></li>
+        </ul>
     </div>
-    <ul class="menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="credits.html">Credits</a></li>
-        <li class="active"><a href="https://www.reddit.com" target="_blank">Reddit</a></li>
-    </ul>
-</div>
 
     <script>
         const dropdowns = document.querySelectorAll('.dropdown');
@@ -159,6 +167,7 @@
                 select.classList.toggle('selected-clicked');
                 caret.classList.toggle('caret-rotate');
                 menu.classList.toggle('menu-open');
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
             });
 
             options.forEach(option => {
