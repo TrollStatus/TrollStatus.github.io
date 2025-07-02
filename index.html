@@ -8,114 +8,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrollStatus</title>
     <style>
-    body {
-        background: linear-gradient(270deg, #0a3bc9, #383a41);
-        background-size: 400% 400%; 
-        animation: gradient 5s ease infinite;
-        height: 100vh;
-        display: flex;
-        flex-direction: column; 
-        justify-content: center;
-        align-items: center; 
-        color: white;
-        font-family: Fira Sans Condensed, sans-serif;
-        position: relative;
-        padding: 20px; 
-    }
-    .title {
-        font-family: Fira Sans Condensed, sans-serif;
-        font-size: 36px;
-        margin-bottom: 20px;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    }
+        body {
+            background: linear-gradient(270deg, #0a3bc9, #383a41);
+            background-size: 400% 400%; 
+            animation: gradient 5s ease infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Fira Sans Condensed, sans-serif;
+            position: relative;
+            padding: 20px; 
+        }
+        #tintedBox {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            width: 80%;
+        }
+        #message {
+            margin-top: 20px;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
 
-    .button-container {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-    }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .menu-button {
-        background-color: transparent;
-        border: 2px solid white;
-        color: #ffffff;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        transition: background-color 0.3s, color 0.3s;
-        cursor: pointer;
-        border-radius: 25px;
-    }
-    .menu-button:hover {
-        background-color: white;
-        color: #007BFF;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    .dropdown {
-        min-width: 15em;
-        position: relative;
-        margin: 2em;
-        display: none;
-    }
-    .menu {
-        list-style: none;
-        padding: 0.2em 0.5em;
-        background: #323741;
-        border: 1px #363a43 solid;
-        box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-        border-radius: 0.5em;
-        color: #9fa5b5;
-        position: absolute;
-        top: 3em;
-        left: 50%;
-        width: 100%;
-        transform: translateX(-50%);
-        opacity: 0;
-        display: none;
-        transition: 0.2s;
-        z-index: 1;
-    }
-
-    .menu li {
-        padding: 0.7em 0.6em;
-        margin: 0.3em 0;
-        border-radius: 0.5em;
-        cursor: pointer;
-    }
-
-    .menu li:hover {
-        background: #2a2d35;
-    }
-
-    .menu-open {
-        display: block;
-        opacity: 1;
-    }
-</style>
+        .title {
+            font-family: Fira Sans Condensed, sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        #image {
+            border-radius: 35%;
+            width: 150px;
+            height: 150px;
+            display: none;
+            margin-top: 20px;
+        }
+        .button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .menu-button {
+            background-color: transparent;
+            border: 2px solid white;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        .menu-button:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+        .footer-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+        }
+        .visit-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .visit-button:hover {
+            background-color: #0056b3;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown.show {
+            display: block;
+        }
+        .dropdown button {
+            background-color: transparent;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+        }
+        .dropdown button:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
    <div class="title">TrollStatus</div>
     <div class="button-container">
         <button class="menu-button" onclick="toggleDropdown()">Menu</button>
         <div class="dropdown" id="dropdown">
-            <ul class="menu">
-                <li><a href="faq-page.html">FAQ</a></li>
-                <li><a href="credits.html">Credits</a></li>
-            </ul>
+            <button onclick="window.location.href='faq-page.html'">FAQ</button>
+            <button onclick="window.location.href='credits.html'">Credits</button>
         </div>
     </div>
-
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.classList.toggle('menu-open');
-        }
-    </script>
-</body>
     
     <div id="tintedBox">
         <img id="image" alt="Trollface" />
