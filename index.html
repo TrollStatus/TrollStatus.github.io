@@ -212,14 +212,14 @@
   <script>
   function detectIOSVersion() {
     setTimeout(() => {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      let message = 'Detecting iOS version...';
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      let message = 'Detecting...';
 
-      const isIOS = /iP(hone|ad|od)/.test(ua);
+      const isIOS = /iPhone|iPad|iPod/.test(userAgent);
       if (!isIOS) {
         message = "Not an iOS device!";
       } else {
-        const match = ua.match(/OS (\d+)_?(\d+)?_?(\d+)?/i);
+        const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/i);
         if (match) {
           const major = parseInt(match[1], 10);
           const minor = parseInt(match[2] || 0, 10);
@@ -227,28 +227,33 @@
           const version = `${major}.${minor}${patch ? "." + patch : ""}`;
 
           
-          if (major === 14 && minor <= 8) {
-            message = `iOS ${version} – Taurine is the recommended jailbreak.`;
-          } else if ((major === 15) || (major === 16 && minor <= 5)) {
-            message = `iOS ${version} – Dopamine is the recommended jailbreak.`;
-          } else if (major === 16 && ((minor === 5 && patch === 1) || minor === 6)) {
-            message = `iOS ${version} – NathanLR is the recommended semi-jailbreak (A15/A16 only).`;
-          } else if (major === 16 && minor === 7) {
-            if (patch >= 0 && patch <= 11) {
-              message = `iOS ${version} – Palera1n is the recommended jailbreak.`;
+          if (major === 14) {
+            if (minor >= 0 && minor <= 8) {
+              message = `iOS ${version} – Taurine jailbreak recommended.`;
             } else {
-              message = `iOS ${version} – Ummmmmmm... script broken :(`;
+              message = `iOS ${version} – Skill issue with my coding...`;
             }
-          } else if (major === 17 && minor === 0) {
-              message = "iOS 17.0 – Compatible with TrollStore!";
+          } else if (major === 15 || (major === 16 && minor <= 5)) {
+            message = `iOS ${version} – Dopamine jailbreak recommended.`;
+          } else if (major === 16 && (minor === 5 && patch === 1 || minor === 6)) {
+            message = `iOS ${version} – NathanLR semi-jailbreak recommended (A15/A16 only).`;
+          } else if (major === 16 && minor >= 7) {
+            message = `iOS ${version} – Palera1n recommended.`;
+          } else if (major === 17) {
+            if (minor === 0) {
+              message = `iOS ${version} – TrollStore compatible.`;
+            } else if (minor <= 5) {
+              message = `iOS ${version} – No jailbreak`;
             } else {
-              message = "iOS version doesn't seem to be jailbreakable.";
+              message = `iOS ${version} – Jailbreak unavailable.`;
             }
+          } else if (major === 18) {
+            message = `iOS ${version} – iOS 18 detected. Too early for even dreaming of a jailbreak.`;
           } else {
-            message = "iOS version not recognized.";
+            message = `iOS ${version} – Unknown or unsupported version.`;
           }
         } else {
-          message = "Not an iOS device!";
+          message = "Could not determine iOS version.";
         }
       }
 
@@ -257,7 +262,7 @@
   }
 
   window.onload = detectIOSVersion;
-
+  
     document.querySelector(".footer").addEventListener("click", () => {
       if (document.getElementById("troll-overlay")) return;
 
