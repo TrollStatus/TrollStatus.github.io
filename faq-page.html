@@ -1,218 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
-    <style>
-        body {
-            background: linear-gradient(270deg, #0a3bc9, #383a41);
-            background-size: 400% 400%; 
-            animation: gradient 5s ease infinite;
-            height: 100vh;
-            display: flex;
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center; 
-            color: white;
-            font-family: Fira Sans Condensed, sans-serif;
-            position: relative;
-            padding: 20px; 
-        }
-        .title {
-            font-family: Fira Sans Condensed, sans-serif;
-            font-size: 36px;
-            margin-bottom: 20px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
+  <meta charset="UTF-8">
+  <title>FAQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0a3bc9;
+      --bg-color-end: #383a41;
+      --text-color: white;
+      --dropdown-bg: rgba(0, 0, 0, 0.85);
+    }
 
-        .button-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+    body.light {
+      --bg-color: #ffffff;
+      --bg-color-end: #e0e0e0;
+      --text-color: #111;
+      --dropdown-bg: rgba(255, 255, 255, 0.95);
+    }
 
-        .menu-button {
-            background-color: transparent;
-            border: 2px solid white;
-            color: #ffffff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-            border-radius: 25px;
-        }
-        .menu-button:hover {
-            background-color: white;
-            color: #007BFF;
-        }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Fira Sans Condensed', sans-serif;
+      height: 100vh;
+      background: linear-gradient(270deg, var(--bg-color), var(--bg-color-end));
+      background-size: 400% 400%;
+      animation: gradient 8s ease infinite;
+      color: var(--text-color);
+      transition: background 0.5s ease, color 0.5s ease;
+    }
 
-        .menu li a {
-            color: white;
-            text-decoration: none;
-        }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        .menu li a:hover {
-            text-decoration: underline;
-        }
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 2.2rem;
+      font-weight: 500;
+    }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    .title a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
 
-        .dropdown {
-            min-width: 15em;
-            position: relative;
-            margin: 2em;
-        }
-        .dropdown * {
-            box-sizing: border-box;
-        }
+    .title a:hover {
+      text-decoration: underline;
+    }
 
-        .select {
-            background: #2a2f3b;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 2px #2a2f3b solid;
-            border-radius: 0.5em;
-            padding: 1em;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+    }
 
-        .selected-clicked {
-            border: 2px #26489a solid;
-            box-shadow: 0 0 0.8em #26489a;
-        }
+    .dropdown {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
 
-        .selected:hover {
-            background: #323741;
-        }
+    .dropbtn {
+      padding: 12px 24px;
+      font-size: 16px;
+      color: var(--text-color);
+      border: none;
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-        .caret {
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid #fff;
-            transition: 0.3s;
-        }
+    .dropbtn::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 30px;
+      background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+      z-index: -1;
+      animation: borderSpin 5s linear infinite;
+      filter: blur(6px);
+    }
 
-        .caret-rotate {
-            transform: rotate(180deg);
-        }
-        .menu {
-            list-style: none;
-            padding: 0.2em 0.5em;
-            background: #323741;
-            border: 1px #363a43 solid;
-            box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-            border-radius: 0.5em;
-            color: #9fa5b5;
-            position: absolute;
-            top: 3em;
-            left: 50%;
-            width: 100%;
-            transform: translateX(-50%);
-            opacity: 0;
-            display: none;
-            transition: 0.2s;
-            z-index: 1;
-        }
+    @keyframes borderSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-        .menu li {
-            padding: 0.7em 0.6em;
-            margin: 0.3em 0;
-            border-radius: 0.5em;
-            cursor: pointer;
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      background-color: var(--dropdown-bg);
+      min-width: 160px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      padding: 10px 0;
+    }
 
-        .menu li:hover {
-            background: #2a2d35;
-        }
+    .dropdown-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .active {
-            background: #23242a;
-        }
+    .dropdown-content a {
+      color: var(--text-color);
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+      margin: 4px 0;
+    }
 
-        .menu-open {
-            display: block;
-            opacity: 1;
-        }
-    </style>
+    .dropdown-content a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-section {
+      max-width: 700px;
+      margin: 100px auto 0 auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-section h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .faq-section p, .faq-section li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .footer-text {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="faq-section">
-        <h1>Frequently Asked Questions</h1>
-        <p>Here you can find answers to common questions.</p>
-        <ul>
-            <li>What is this? - Just a very inconvenient project :P</li>
-            <li>Why? - I have too much time xD</li>
-            <li>Why does this site tell incorrectly that my iOS-version isn't supported? - I likely messed something up, or it's because you're using an arm64 device, and this site is aimed for arm64e currently.</li>
-            <li>Also! Please report any unexpected errors in Reddit.</li>
-        </ul>
+  <div class="title"><a href="index.html">TrollStatus</a></div>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+
+  <div class="faq-section">
+    <h1>Frequently Asked Questions</h1>
+    <p>Here you can find answers to common questions.</p>
+    <ul>
+      <li><strong>What is this?</strong> – Just a very inconvenient project :P</li>
+      <li><strong>Why?</strong> – I have too much time xD</li>
+      <li><strong>Why does this site say my iOS version isn’t supported?</strong> – I probably messed something up, or it’s because you’re using an arm64 device. This site is aimed at arm64e devices currently.</li>
+      <li><strong>Found a bug?</strong> – Please report unexpected errors on Reddit!</li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown()">Menu</button>
+    <div id="dropdownMenu" class="dropdown-content">
+      <a href="index.html">Home</a>
+      <a href="faq.html">FAQ</a>
+      <a href="credits.html">Credits</a>
+      <a href="https://reddit.com/r/jailbreak" target="_blank">Reddit</a>
     </div>
+  </div>
 
-    <div class="button-container">
-        <div class="dropdown">
-            <div class="select">
-                <span class="selected">Menu</span>
-                <div class="caret"></div>
-            </div>
-            <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="credits.html">Credits</a></li>
-                <li><a href="https://reddit.com">Reddit</a></li>
-            </ul>
-        </div>
-    </div>
+  <div class="footer-text">Made with ❤️ from Finland</div>
 
-    <div class="title">TrollStatus</div>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.classList.toggle('show');
+    }
 
-    <script>
-        const dropdowns = document.querySelectorAll('.dropdown');
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (const d of dropdowns) {
+          d.classList.remove('show');
+        }
+      }
+    }
 
-        dropdowns.forEach(dropdown => {
-            const select = dropdown.querySelector('.select');
-            const caret = dropdown.querySelector('.caret');
-            const menu = dropdown.querySelector('.menu');
-            const options = dropdown.querySelectorAll('.menu li');
-            const selected = dropdown.querySelector('.selected');
+    function toggleTheme() {
+      const body = document.body;
+      const isLight = body.classList.toggle('light');
+      const toggle = document.getElementById('themeToggle');
+      toggle.innerText = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
 
-            select.addEventListener('click', () => {
-                select.classList.toggle('selected-clicked');
-                caret.classList.toggle('caret-rotate');
-                menu.classList.toggle('menu-open');
-            });
+    function applySavedTheme() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') {
+        document.body.classList.add('light');
+        document.getElementById('themeToggle').innerText = '☀️';
+      }
+    }
 
-            options.forEach(option => {
-                option.addEventListener('click', () => {
-                    selected.innerText = option.innerText;
-                    select.classList.remove('selected-clicked');
-                    caret.classList.remove('caret-rotate');
-                    menu.classList.remove('menu-open');
+    window.onload = applySavedTheme;
+  </script>
 
-                    options.forEach(opt => {
-                        opt.classList.remove('active');
-                    });
-
-                    option.classList.add('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
