@@ -1,209 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrollStatus</title>
-    <style>
-        body {
-            background: linear-gradient(270deg, #0a3bc9, #383a41);
-            background-size: 400% 400%; 
-            animation: gradient 5s ease infinite;
-            height: 100vh;
-            display: flex;
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: Fira Sans Condensed, sans-serif;
-            position: relative;
-            padding: 20px; 
-        }
-        #tintedBox {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-            width: 80%;
-        }
-        #message {
-            margin-top: 20px;
-            transition: opacity 0.5s ease;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrollStatus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(270deg, #0a3bc9, #383a41);
+      background-size: 400% 400%; 
+      animation: gradient 5s ease infinite;
+      height: 100vh;
+      display: flex;
+      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Fira Sans Condensed', sans-serif;
+      position: relative;
+      padding: 20px;
+      margin: 0;
+    }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
 
-        .title {
-            font-family: Fira Sans Condensed, sans-serif;
-            font-size: 36px;
-            margin-bottom: 20px;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        #image {
-            border-radius: 35%;
-            width: 150px;
-            height: 150px;
-            display: none;
-            margin-top: 20px;
-        }
-        .button-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .menu-button {
-            background-color: transparent;
-            border: 2px solid white;
-            color: #ffffff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-            border-radius: 25px;
-        }
-        .menu-button:hover {
-            background-color: white;
-            color: #007BFF;
-        }
-        .footer-text {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-        }
-        .visit-button {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-        .visit-button:hover {
-            background-color: #0056b3;
-        }
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown.show {
-            display: block;
-        }
-        .dropdown button {
-            background-color: transparent;
-            border: none;
-            color: black;
-            padding: 10px 20px;
-            text-align: left;
-            cursor: pointer;
-            width: 100%;
-        }
-        .dropdown button:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 3px solid;
+      border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
+      border-radius: 8px;
+      cursor: pointer;
+      background-clip: padding-box;
+      animation: borderMove 5s linear infinite;
+    }
+
+    @keyframes borderMove {
+      0% { border-image-source: linear-gradient(0deg, red, orange, yellow, green, blue, indigo, violet); }
+      25% { border-image-source: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); }
+      50% { border-image-source: linear-gradient(180deg, red, orange, yellow, green, blue, indigo, violet); }
+      75% { border-image-source: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet); }
+      100% { border-image-source: linear-gradient(360deg, red, orange, yellow, green, blue, indigo, violet); }
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #333;
+    }
+
+    #tintedBox {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+      width: 80%;
+    }
+
+    #message {
+      margin-top: 20px;
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #image {
+      border-radius: 35%;
+      width: 150px;
+      height: 150px;
+      display: none;
+      margin-top: 20px;
+    }
+
+    .footer-text {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+    }
+
+    .visit-button {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .visit-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-   <div class="title">TrollStatus</div>
-    <div class="button-container">
-        <button class="menu-button" onclick="toggleDropdown()">Menu</button>
-        <div class="dropdown" id="dropdown">
-            <button onclick="window.location.href='faq-page.html'">FAQ</button>
-            <button onclick="window.location.href='credits.html'">Credits</button>
-        </div>
+
+  <div class="title">TrollStatus</div>
+
+  <nav>
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <a href="faq.html">FAQ</a>
+        <a href="credits.html">Credits</a>
+      </div>
     </div>
-    
-    <div id="tintedBox">
-        <img id="image" alt="Trollface" />
-        <div id="message"></div>
-        <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">Visit ios.cfw.guide</button>
-    </div>
+  </nav>
 
-    <div class="footer-text">Made in Finland</div>
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.classList.toggle('show');
+  <div id="tintedBox">
+    <img id="image" alt="Trollface" />
+    <div id="message"></div>
+    <button id="visitButton" class="visit-button" onclick="window.location.href='https://ios.cfw.guide'">Visit ios.cfw.guide</button>
+  </div>
+
+  <div class="footer-text">Made in Finland</div>
+
+  <script>
+    function detectIOSVersion() {
+      setTimeout(() => {
+        try {
+          const userAgent = navigator.userAgent;
+          let message = '';
+
+          if (/iPhone|iPad|iPod/.test(userAgent)) {
+            const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
+            if (match) {
+              const major = parseInt(match[1], 10);
+              const minor = parseInt(match[2] || 0, 10);
+              const patch = parseInt(match[3] || 0, 10);
+
+              if (major === 16 && minor <= 5) {
+                message = "Your device is on iOS 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
+                document.getElementById('image').src = 'Trollface.jpg';
+                document.getElementById('image').style.display = 'inline';
+              } else if (major === 16 && minor === 5 && patch <= 1) {
+                message = "NathanLR is the recommended tool for you, as you're on iOS 16.5.1";
+              } else if (major === 16 && minor === 6 && patch <= 1) {
+                message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
+              } else if (major === 16 && minor === 7 && patch <= 10) {
+                message = "You're on iOS 16.7-16.7.10, which is also jailbreakable if you're using a Checkm8 device!";
+              } else if (major === 17 && minor === 0) {
+                message = "Your device seems to be compatible with TrollStore. Go to ios.cfw.guide for more information about installing TrollStore.";
+              } else if (major > 17 || (major === 16 && minor > 7)) {
+                message = "Your iOS-version is too new to be jailbroken :(";
+              }
+            } else {
+              message = "Oops! Your device was not recognised";
+            }
+          } else {
+            message = "You're not using an iOS device!";
+          }
+
+          document.getElementById('message').innerText = message;
+          document.getElementById('message').style.opacity = 1;
+          document.getElementById('visitButton').style.display = 'block';
+
+        } catch (error) {
+          console.error("An error occurred while detecting the iOS version:", error);
+          document.getElementById('message').innerText = "An error occurred while detecting your device.";
         }
+      }, 1500);
+    }
 
-        function detectIOSVersion() {
-            setTimeout(() => {
-                try {
-                    const userAgent = navigator.userAgent;
-                    let message = '';
+    window.onload = detectIOSVersion;
+  </script>
 
-                    if (/iPhone|iPad|iPod/.test(userAgent)) {
-                        const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
-                        if (match) {
-                            const major = parseInt(match[1], 10);
-                            const minor = parseInt(match[2] || 0, 10);
-                            const patch = parseInt(match[3] || 0, 10);
-
-                            if (major === 16 && minor <= 5) {
-                                message = "Your device is on iOS 16.5 or lower, so it's jailbreak time! Check ios.cfw.guide for instructions.";
-                                document.getElementById('image').src = 'Trollface.jpg';
-                                document.getElementById('image').style.display = 'inline';
-                            } else if (major === 16 && minor === 5 && patch <= 1) {
-                                message = "NathanLR is the recommended tool for you, as you're on iOS 16.5.1";
-                            } else if (major === 16 && minor === 6 && patch <= 1) {
-                                message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
-                            } else if (major === 16 && minor === 7 && patch <= 10) {
-                                message = "You're on iOS 16.7-16.7.10, which is also jailbreakable if you're using a Checkm8 device!";
-                            } else if (major === 17 && minor === 0) {
-                                message = "Your device seems to be compatible with TrollStore. Go to ios.cfw.guide for more information about installing TrollStore.";
-                            } else if (major > 17 || (major === 16 && minor > 7)) {
-                                message = "Your iOS-version is too new to be jailbroken :(";
-                            }
-                        } else {
-                            message = "Oops! Your device was not recognised";
-                        }
-                    } else {
-                        message = "You're not using an iOS device!";
-                    }
-
-                    document.getElementById('message').innerText = message;
-                    document.getElementById('message').style.opacity = 1;
-                    document.getElementById('visitButton').style.display = 'block';
-
-                } catch (error) {
-                    console.error("An error occurred while detecting the iOS version:", error);
-                    document.getElementById('message').innerText = "An error occurred while detecting your device.";
-                }
-            }, 1500);
-        }
-
-        window.onload = detectIOSVersion;
-    </script>
 </body>
 </html>
+
