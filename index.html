@@ -70,14 +70,33 @@
       box-shadow: 0 0 12px lime;
     }
 
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid lime;
+      animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+      font-size: 14px;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      0%, 100% { border-color: lime; }
+      50% { border-color: transparent; }
+    }
+
     #message {
       margin-top: 20px;
       color: #00ff00;
+      font-size: 12px;
     }
 
     .visit-button-wrapper {
-      margin-top: 20px;
-      display: none;
+      margin-top: 25px;
     }
 
     .visit-button {
@@ -85,10 +104,19 @@
       background: #000;
       color: lime;
       border: 2px solid lime;
-      padding: 12px 20px;
-      cursor: pointer;
+      padding: 14px 20px;
       text-decoration: none;
       display: inline-block;
+      animation: glow 1.2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px lime, 0 0 10px lime;
+      }
+      to {
+        box-shadow: 0 0 15px lime, 0 0 25px lime;
+      }
     }
 
     .visit-button:hover {
@@ -144,9 +172,9 @@
 
   
   <div id="tintedBox">
-    <h2>Welcome to TrollStatus</h2>
+    <h2 class="typewriter">Welcome to TrollStatus</h2>
     <p id="message">Detecting your device...</p>
-    <div class="visit-button-wrapper" id="visitButton">
+    <div class="visit-button-wrapper">
       <a class="visit-button" href="https://ios.cfw.guide" target="_blank">Visit ios.cfw.guide</a>
     </div>
   </div>
@@ -169,8 +197,6 @@
       setTimeout(() => {
         const userAgent = navigator.userAgent;
         let message = '';
-        let showGuideButton = false;
-
         if (/iPhone|iPad|iPod/.test(userAgent)) {
           const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
           if (match) {
@@ -180,19 +206,14 @@
 
             if (major === 16 && minor <= 5) {
               message = "iOS 16.5 or lower detected. Jailbreak time!";
-              showGuideButton = true;
             } else if (major === 16 && minor === 5 && patch <= 1) {
               message = "iOS 16.5.1 – Use NathanLR.";
-              showGuideButton = true;
             } else if (major === 16 && minor === 6 && patch <= 1) {
               message = "iOS 16.6–16.6.1 – Use NathanLR.";
-              showGuideButton = true;
             } else if (major === 16 && minor === 7 && patch <= 10) {
               message = "iOS 16.7–16.7.10 – Checkm8 might work!";
-              showGuideButton = true;
             } else if (major === 17 && minor === 0) {
               message = "iOS 17.0 – Compatible with TrollStore!";
-              showGuideButton = true;
             } else {
               message = "iOS version may not be jailbreakable.";
             }
@@ -204,9 +225,6 @@
         }
 
         document.getElementById('message').innerText = message;
-        if (showGuideButton) {
-          document.getElementById('visitButton').style.display = 'block';
-        }
       }, 1000);
     }
 
