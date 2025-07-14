@@ -4,24 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrollStatus</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@200;400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(270deg, #0a3bc9, #383a41);
-      background-size: 400% 400%; 
-      animation: gradient 5s ease infinite;
-      height: 100vh;
-      display: flex;
-      flex-direction: column; 
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-family: 'Fira Sans Condensed', sans-serif;
-      position: relative;
-      padding: 20px;
       margin: 0;
+      padding: 0;
+      font-family: 'Fira Sans Condensed', sans-serif;
+      height: 100vh;
+      background: linear-gradient(270deg, #0a3bc9, #383a41);
+      background-size: 400% 400%;
+      animation: gradient 8s ease infinite;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
     @keyframes gradient {
@@ -31,18 +29,17 @@
     }
 
     .title {
-      font-size: 36px;
-      margin-bottom: 20px;
       position: absolute;
       top: 20px;
       left: 20px;
+      font-size: 2.5rem;
+      font-weight: 500;
     }
 
     nav {
       position: absolute;
       top: 20px;
       right: 20px;
-      background: transparent;
     }
 
     .dropdown {
@@ -51,74 +48,76 @@
     }
 
     .dropbtn {
-      background: none;
-      color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       font-size: 16px;
-      border: 3px solid;
-      border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1;
-      border-radius: 8px;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
       cursor: pointer;
-      background-clip: padding-box;
-      animation: borderMove 5s linear infinite;
+      position: relative;
+      z-index: 1;
     }
 
-    @keyframes borderMove {
-      0% { border-image-source: linear-gradient(0deg, red, orange, yellow, green, blue, indigo, violet); }
-      25% { border-image-source: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); }
-      50% { border-image-source: linear-gradient(180deg, red, orange, yellow, green, blue, indigo, violet); }
-      75% { border-image-source: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet); }
-      100% { border-image-source: linear-gradient(360deg, red, orange, yellow, green, blue, indigo, violet); }
+    .dropbtn::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      z-index: -1;
+      filter: blur(8px);
+      animation: pulse 3s infinite linear;
+    }
+
+    @keyframes pulse {
+      0% { filter: blur(6px); opacity: 0.8; }
+      50% { filter: blur(12px); opacity: 1; }
+      100% { filter: blur(6px); opacity: 0.8; }
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #333;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-      z-index: 1;
-      border-radius: 5px;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      min-width: 180px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      overflow: hidden;
+      animation: fadeIn 0.3s ease forwards;
     }
 
     .dropdown-content a {
       color: white;
-      padding: 12px 16px;
+      padding: 14px 20px;
       text-decoration: none;
       display: block;
+      transition: background 0.2s;
     }
 
     .dropdown-content a:hover {
-      background-color: #444;
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    .dropdown:hover .dropbtn {
-      background-color: #333;
-    }
-
     #tintedBox {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      padding: 25px;
+      width: 85%;
+      max-width: 500px;
       text-align: center;
-      margin-top: 20px;
-      width: 80%;
-    }
-
-    #message {
-      margin-top: 20px;
-      transition: opacity 0.5s ease;
-      opacity: 0;
-      animation: fadeIn 0.5s forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      margin-top: 80px;
     }
 
     #image {
@@ -129,28 +128,41 @@
       margin-top: 20px;
     }
 
-    .footer-text {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
+    #message {
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
     }
 
     .visit-button {
       display: none;
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #007BFF;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
     }
 
     .visit-button:hover {
       background-color: #0056b3;
+    }
+
+    .footer-text {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -197,16 +209,16 @@
               } else if (major === 16 && minor === 5 && patch <= 1) {
                 message = "NathanLR is the recommended tool for you, as you're on iOS 16.5.1";
               } else if (major === 16 && minor === 6 && patch <= 1) {
-                message = "NathanLR is the recommended tool for you, as you're on iOS 16.6-16.6.1";
+                message = "NathanLR is the recommended tool for you, as you're on iOS 16.6–16.6.1";
               } else if (major === 16 && minor === 7 && patch <= 10) {
-                message = "You're on iOS 16.7-16.7.10, which is also jailbreakable if you're using a Checkm8 device!";
+                message = "You're on iOS 16.7–16.7.10, which is also jailbreakable if you're using a Checkm8 device!";
               } else if (major === 17 && minor === 0) {
                 message = "Your device seems to be compatible with TrollStore. Go to ios.cfw.guide for more information about installing TrollStore.";
               } else if (major > 17 || (major === 16 && minor > 7)) {
                 message = "Your iOS-version is too new to be jailbroken :(";
               }
             } else {
-              message = "Oops! Your device was not recognised";
+              message = "Oops! Your device was not recognised.";
             }
           } else {
             message = "You're not using an iOS device!";
@@ -214,7 +226,7 @@
 
           document.getElementById('message').innerText = message;
           document.getElementById('message').style.opacity = 1;
-          document.getElementById('visitButton').style.display = 'block';
+          document.getElementById('visitButton').style.display = 'inline-block';
 
         } catch (error) {
           console.error("An error occurred while detecting the iOS version:", error);
