@@ -7,18 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Fira Sans Condensed', sans-serif;
+      height: 100vh;
       background: linear-gradient(270deg, #0a3bc9, #383a41);
       background-size: 400% 400%;
-      animation: gradient 5s ease infinite;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-      font-family: 'Fira Sans Condensed', sans-serif;
+      animation: gradient 6s ease infinite;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
     }
 
     @keyframes gradient {
@@ -27,80 +26,131 @@
       100% { background-position: 0% 50%; }
     }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    .logo {
+      font-size: 3rem;
+      margin: 40px 0 20px 0;
+      font-weight: bold;
+      text-shadow: 2px 2px #000;
+    }
+
+    .faq-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      border-radius: 16px;
       max-width: 700px;
       width: 90%;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
     }
 
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
+    .faq-box h1 {
+      font-size: 2rem;
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    ul {
-      list-style-type: square;
+    .faq-box ul {
       padding-left: 20px;
     }
 
-    li {
-      margin-bottom: 15px;
-      font-size: 1.2rem;
+    .faq-box li {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
-    .menu {
+    .dropdown {
       position: absolute;
       top: 20px;
       right: 20px;
     }
 
-    .menu button {
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
+    .dropbtn {
       padding: 10px 20px;
       font-size: 16px;
-      cursor: pointer;
+      color: white;
+      background-color: transparent;
+      border: 2px solid white;
       border-radius: 25px;
+      cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    .menu button:hover {
+    .dropbtn:hover {
       background-color: white;
       color: #0a3bc9;
     }
 
-    .footer {
+    .dropdown-content {
+      display: none;
       position: absolute;
-      bottom: 20px;
+      top: 45px;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #222;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding: 20px;
       font-size: 14px;
       color: white;
-      opacity: 0.75;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-  <div class="menu">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='credits.html'">Credits</button>
-  </div>
+  <div class="logo">TrollStatus</div>
 
-  <div class="container">
+  <div class="faq-box">
     <h1>Frequently Asked Questions</h1>
     <ul>
       <li><strong>What is this?</strong> – Just a very inconvenient project :P</li>
       <li><strong>Why?</strong> – I have too much time xD</li>
       <li><strong>Why does this site say my iOS version isn’t supported?</strong> – I probably messed something up, or it’s because you’re using an arm64 device. This site is aimed at arm64e devices currently.</li>
-      <li><strong>Found a bug?</strong> – Please report unexpected errors on Reddit!</li>
+      <li><strong>Found a bug?</strong> – Please report (un)expected errors to me in Reddit!</li>
     </ul>
   </div>
 
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown()">Menu</button>
+    <div class="dropdown-content" id="dropdownMenu">
+      <a href="index.html">Home</a>
+      <a href="credits.html">Credits</a>
+      <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
+    </div>
+  </div>
+
   <div class="footer">Made in Finland 🇫🇮</div>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (const d of dropdowns) {
+          d.style.display = "none";
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
