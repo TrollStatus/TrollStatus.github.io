@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TrollStatus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --bg-color: #0a3bc9;
@@ -258,8 +258,10 @@
               } else if (major === 17 && minor === 0) {
                 message = "Your device seems to be compatible with TrollStore. Go to ios.cfw.guide for more information.";
                 showGuideButton = true;
-              } else if (major > 17 || (major === 16 && minor > 7)) {
+              } else if (major > 17 || (major === 17 && minor > 0)) {
                 message = "Your iOS-version is too new to be jailbroken :(";
+              } else {
+                message = "Your iOS version is not supported for jailbreak yet.";
               }
             } else {
               message = "Oops! Your device was not recognised.";
@@ -321,3 +323,4 @@
   </script>
 </body>
 </html>
+
