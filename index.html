@@ -4,162 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrollStatus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #0a3bc9;
-      --bg-color-end: #383a41;
-      --text-color: white;
-    }
-
-    body.light {
-      --bg-color: #ffffff;
-      --bg-color-end: #e0e0e0;
-      --text-color: #111;
-    }
-
     body {
       margin: 0;
-      font-family: 'Fira Sans Condensed', sans-serif;
-      background: linear-gradient(270deg, var(--bg-color), var(--bg-color-end));
-      background-size: 400% 400%;
-      animation: gradient 8s ease infinite;
-      color: var(--text-color);
-      transition: background 0.5s ease, color 0.5s ease;
-      overflow-x: hidden;
+      font-family: 'Press Start 2P', monospace;
+      background: black url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      color: #00ff00;
+      text-shadow: 1px 1px 1px black;
     }
 
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .title {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 2.5rem;
-      font-weight: 500;
-    }
-
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1001;
-      font-size: 28px;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-
-    .menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100vh;
-      width: 260px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
-      transition: right 0.4s ease;
-      border-left: 2px solid rgba(255, 255, 255, 0.2);
-      z-index: 1000;
-    }
-
-    .menu.open {
-      right: 0;
-    }
-
-    .menu .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-
-    .menu .theme-toggle {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      font-size: 22px;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-
-    .menu a {
-      position: relative;
-      display: inline-block;
-      width: 100%;
+    .header {
       text-align: center;
-      padding: 14px 0;
-      margin-bottom: 16px;
-      font-size: 16px;
-      font-weight: 500;
+      padding: 30px 10px;
+      background: #111;
+      border-bottom: 4px solid lime;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #00ff00;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      background: #222;
+      border-top: 2px solid lime;
+      border-bottom: 2px solid lime;
+    }
+
+    .nav a {
+      color: lime;
       text-decoration: none;
-      color: white;
-      border-radius: 32px;
-      background-color: #111;
-      z-index: 1;
-      overflow: hidden;
-      transition: background 0.2s ease;
+      background: #000;
+      padding: 8px 16px;
+      border: 2px solid lime;
+      display: inline-block;
     }
 
-    .menu a::before {
-      content: "";
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      border-radius: 36px;
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
-      background-size: 400%;
-      animation: glow 6s linear infinite;
-      z-index: -1;
-      filter: blur(10px);
-    }
-
-    @keyframes glow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .nav a:hover {
+      background: lime;
+      color: black;
     }
 
     #tintedBox {
-      background-color: rgba(255, 255, 255, 0.08);
-      border-radius: 15px;
+      background-color: #111;
+      border: 4px double lime;
       padding: 25px;
-      max-width: 500px;
-      margin: 100px auto 40px;
+      max-width: 600px;
+      margin: 40px auto;
       text-align: center;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-    }
-
-    #image {
-      display: none;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-top: 20px;
+      box-shadow: 0 0 12px lime;
     }
 
     #message {
       margin-top: 20px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
+      color: #00ff00;
+    }
+
+    #image {
+      display: none;
+      width: 120px;
+      height: 120px;
+      margin-top: 20px;
+      border: 2px solid lime;
     }
 
     .visit-button-wrapper {
@@ -168,139 +81,140 @@
     }
 
     .visit-button {
-      position: relative;
-      display: inline-block;
-      padding: 12px 30px;
-      font-size: 16px;
-      background-color: #111;
-      color: white;
-      border: none;
-      border-radius: 32px;
+      font-family: 'Press Start 2P', monospace;
+      background: #000;
+      color: lime;
+      border: 2px solid lime;
+      padding: 12px 20px;
       cursor: pointer;
-      z-index: 1;
-      overflow: hidden;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .visit-button::before {
-      content: "";
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      border-radius: 36px;
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
-      background-size: 400%;
-      animation: glow 6s linear infinite;
-      z-index: -1;
-      filter: blur(10px);
+    .visit-button:hover {
+      background: lime;
+      color: black;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .news-section {
+      background-color: #111;
+      border: 4px dashed lime;
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px lime;
+    }
+
+    .news-section h2 {
+      font-size: 16px;
+      color: lime;
+      margin-bottom: 15px;
+    }
+
+    .news-section p {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #00ff00;
+    }
+
+    .footer {
+      margin-top: 50px;
+      background: #111;
+      color: lime;
+      text-align: center;
+      padding: 20px;
+      border-top: 4px solid lime;
+      font-size: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="title">TrollStatus</div>
-  <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
 
-  <div class="menu" id="menu">
-    <button class="close-btn" onclick="toggleMenu()">&times;</button>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
-    <a href="#">FAQ</a>
-    <a href="#">Credits</a>
-    <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
+  
+  <div class="header">
+    <h1>TrollStatus</h1>
   </div>
 
+  
+  <div class="nav">
+    <a href="#">FAQ</a>
+    <a href="#">Credits</a>
+    <a href="https://reddit.com/r/jailbreak" target="_blank">Reddit</a>
+  </div>
+
+  
   <div id="tintedBox">
     <h2>Welcome to TrollStatus</h2>
     <p id="message">Detecting your device...</p>
     <img id="image" src="" alt="trollface" />
     <div class="visit-button-wrapper" id="visitButton">
-      <a href="https://ios.cfw.guide" target="_blank">
-        <button class="visit-button">Visit ios.cfw.guide</button>
-      </a>
+      <a class="visit-button" href="https://ios.cfw.guide" target="_blank">Visit ios.cfw.guide</a>
     </div>
   </div>
 
+  <div class="news-section">
+    <h2>News</h2>
+    <p>July 14, 2025 – Test</p>
+    <p>Stay tuned for updates.</p>
+  </div>
+
+  <div class="footer">
+    Made in Finland 🇫🇮
+  </div>
+
   <script>
-    function toggleMenu() {
-      document.getElementById('menu').classList.toggle('open');
-    }
-
-    function toggleTheme() {
-      const body = document.body;
-      const isLight = body.classList.toggle('light');
-      document.getElementById('themeToggle').innerText = isLight ? '☀️' : '🌙';
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    }
-
-    function applySavedTheme() {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'light') {
-        document.body.classList.add('light');
-        document.getElementById('themeToggle').innerText = '☀️';
-      }
-    }
-
     function detectIOSVersion() {
       setTimeout(() => {
-        try {
-          const userAgent = navigator.userAgent;
-          let message = '';
-          let showGuideButton = false;
+        const userAgent = navigator.userAgent;
+        let message = '';
+        let showGuideButton = false;
 
-          if (/iPhone|iPad|iPod/.test(userAgent)) {
-            const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
-            if (match) {
-              const major = parseInt(match[1], 10);
-              const minor = parseInt(match[2] || 0, 10);
-              const patch = parseInt(match[3] || 0, 10);
+        if (/iPhone|iPad|iPod/.test(userAgent)) {
+          const match = userAgent.match(/OS (\d+)_?(\d+)?_?(\d+)?/);
+          if (match) {
+            const major = parseInt(match[1], 10);
+            const minor = parseInt(match[2] || 0, 10);
+            const patch = parseInt(match[3] || 0, 10);
 
-              if (major === 16 && minor <= 5) {
-                message = "Your device is on iOS 16.5 or lower, so it's jailbreak time!";
-                document.getElementById('image').src = 'Trollface.jpg';
-                document.getElementById('image').style.display = 'inline';
-                showGuideButton = true;
-              } else if (major === 16 && minor === 5 && patch <= 1) {
-                message = "You're on iOS 16.5.1. Use NathanLR.";
-                showGuideButton = true;
-              } else if (major === 16 && minor === 6 && patch <= 1) {
-                message = "You're on iOS 16.6–16.6.1. Use NathanLR.";
-                showGuideButton = true;
-              } else if (major === 16 && minor === 7 && patch <= 10) {
-                message = "You're on iOS 16.7–16.7.10. Checkm8 may work!";
-                showGuideButton = true;
-              } else if (major === 17 && minor === 0) {
-                message = "Your device is compatible with TrollStore!";
-                showGuideButton = true;
-              } else {
-                message = "Your iOS version may not be jailbroken yet.";
-              }
+            if (major === 16 && minor <= 5) {
+              message = "iOS 16.5 or lower detected. Jailbreak time!";
+              document.getElementById('image').src = 'Trollface.jpg';
+              document.getElementById('image').style.display = 'inline';
+              showGuideButton = true;
+            } else if (major === 16 && minor === 5 && patch <= 1) {
+              message = "iOS 16.5.1 – Use NathanLR.";
+              showGuideButton = true;
+            } else if (major === 16 && minor === 6 && patch <= 1) {
+              message = "iOS 16.6–16.6.1 – Use NathanLR.";
+              showGuideButton = true;
+            } else if (major === 16 && minor === 7 && patch <= 10) {
+              message = "iOS 16.7–16.7.10 – Checkm8 might work!";
+              showGuideButton = true;
+            } else if (major === 17 && minor === 0) {
+              message = "iOS 17.0 – Compatible with TrollStore!";
+              showGuideButton = true;
             } else {
-              message = "Oops! Could not recognize your iOS version.";
+              message = "iOS version may not be jailbreakable.";
             }
           } else {
-            message = "You're not using an iOS device!";
+            message = "iOS version not recognized.";
           }
-
-          document.getElementById('message').innerText = message;
-          document.getElementById('message').style.opacity = 1;
-
-          if (showGuideButton) {
-            document.getElementById('visitButton').style.display = 'block';
-          }
-        } catch (e) {
-          document.getElementById('message').innerText = "Error detecting device.";
+        } else {
+          message = "Not an iOS device!";
         }
-      }, 1200);
+
+        document.getElementById('message').innerText = message;
+        document.getElementById('message').style.opacity = 1;
+
+        if (showGuideButton) {
+          document.getElementById('visitButton').style.display = 'block';
+        }
+      }, 1000);
     }
 
-    window.onload = () => {
-      detectIOSVersion();
-      applySavedTheme();
-    };
+    window.onload = detectIOSVersion;
   </script>
+
 </body>
 </html>
+
