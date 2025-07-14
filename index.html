@@ -6,12 +6,20 @@
   <title>TrollStatus</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: 'Press Start 2P', monospace;
       background: black url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
       color: #00ff00;
       text-shadow: 1px 1px 1px black;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .header {
@@ -57,7 +65,7 @@
       border: 4px double lime;
       padding: 25px;
       max-width: 600px;
-      margin: 40px auto;
+      margin: 40px auto 20px;
       text-align: center;
       box-shadow: 0 0 12px lime;
     }
@@ -65,14 +73,6 @@
     #message {
       margin-top: 20px;
       color: #00ff00;
-    }
-
-    #image {
-      display: none;
-      width: 120px;
-      height: 120px;
-      margin-top: 20px;
-      border: 2px solid lime;
     }
 
     .visit-button-wrapper {
@@ -118,13 +118,13 @@
     }
 
     .footer {
-      margin-top: 50px;
       background: #111;
       color: lime;
       text-align: center;
       padding: 20px;
       border-top: 4px solid lime;
       font-size: 10px;
+      margin-top: auto;
     }
   </style>
 </head>
@@ -146,22 +146,24 @@
   <div id="tintedBox">
     <h2>Welcome to TrollStatus</h2>
     <p id="message">Detecting your device...</p>
-    <img id="image" src="" alt="trollface" />
     <div class="visit-button-wrapper" id="visitButton">
       <a class="visit-button" href="https://ios.cfw.guide" target="_blank">Visit ios.cfw.guide</a>
     </div>
   </div>
 
+  
   <div class="news-section">
     <h2>News</h2>
-    <p>July 14, 2025 – Test</p>
+    <p>July 14, 2025 – TrollStatus is live! More features like firmware-specific guides, OTA checkers and local notifications coming soon!</p>
     <p>Stay tuned for updates.</p>
   </div>
 
+  
   <div class="footer">
     Made in Finland 🇫🇮
   </div>
 
+  
   <script>
     function detectIOSVersion() {
       setTimeout(() => {
@@ -178,8 +180,6 @@
 
             if (major === 16 && minor <= 5) {
               message = "iOS 16.5 or lower detected. Jailbreak time!";
-              document.getElementById('image').src = 'Trollface.jpg';
-              document.getElementById('image').style.display = 'inline';
               showGuideButton = true;
             } else if (major === 16 && minor === 5 && patch <= 1) {
               message = "iOS 16.5.1 – Use NathanLR.";
@@ -204,8 +204,6 @@
         }
 
         document.getElementById('message').innerText = message;
-        document.getElementById('message').style.opacity = 1;
-
         if (showGuideButton) {
           document.getElementById('visitButton').style.display = 'block';
         }
@@ -217,4 +215,3 @@
 
 </body>
 </html>
-
