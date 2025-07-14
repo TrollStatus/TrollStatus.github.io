@@ -37,6 +37,7 @@
       justify-content: center;
       position: relative;
       transition: background 0.5s ease, color 0.5s ease;
+      overflow-x: hidden;
     }
 
     @keyframes gradient {
@@ -56,7 +57,7 @@
     .theme-toggle {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 60px;
       font-size: 24px;
       background: none;
       border: none;
@@ -64,82 +65,83 @@
       cursor: pointer;
     }
 
-    nav {
+    #menuToggle {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      padding: 12px 24px;
-      font-size: 16px;
-      color: var(--text-color);
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      background: none;
       border: none;
-      border-radius: 30px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(6px);
+      color: var(--text-color);
       cursor: pointer;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
+      z-index: 101;
     }
 
-    .dropbtn::before {
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100vh;
+      background-color: var(--dropdown-bg);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 20px;
+      transition: right 0.4s ease;
+      z-index: 100;
+    }
+
+    .menu.open {
+      right: 0;
+    }
+
+    .menu button.close {
+      align-self: flex-end;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .menu a {
+      position: relative;
+      display: block;
+      padding: 12px 24px;
+      margin: 10px 0;
+      color: var(--text-color);
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 16px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .menu a::before {
       content: "";
       position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      border-radius: 30px;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 14px;
       background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+      animation: borderSpin 3s linear infinite;
       z-index: -1;
-      animation: borderSpin 5s linear infinite;
-      filter: blur(6px);
+      filter: blur(4px);
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     @keyframes borderSpin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      bottom: 50px;
-      left: 0;
-      background-color: var(--dropdown-bg);
-      min-width: 160px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      padding: 10px 0;
-    }
-
-    .dropdown-content.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .dropdown-content a {
-      color: var(--text-color);
-      padding: 12px 20px;
-      text-decoration: none;
-      display: block;
-      transition: background 0.2s;
-      margin: 4px 0;
-    }
-
-    .dropdown-content a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
     }
 
     #tintedBox {
@@ -179,6 +181,8 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
+      text-align: center;
+      text-decoration: none;
       transition: background-color 0.3s ease;
     }
 
@@ -203,28 +207,24 @@
 <body>
   <div class="title">TrollStatus</div>
   <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+  <button id="menuToggle" onclick="toggleMenu()">☰</button>
+
+  <div class="menu" id="menu">
+    <button class="close" onclick="toggleMenu()">✖</button>
+    <a href="faq-page.html">FAQ</a>
+    <a href="credits.html">Credits</a>
+    <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
+    <a href="" target="_blank">Something cool happens with this button soon</a>
+  </div>
 
   <div id="tintedBox">
     <h2>Welcome to TrollStatus</h2>
     <p id="message">Detecting your device...</p>
     <img id="image" src="" alt="trollface.jpg" />
-    <a id="visitButton" href="https://ios.cfw.guide" target="_blank">
-      <button class="visit-button">Visit ios.cfw.guide</button>
-    </a>
+    <a id="visitButton" href="https://ios.cfw.guide" target="_blank" class="visit-button">Visit ios.cfw.guide</a>
   </div>
 
-  <nav>
-    <div class="dropdown">
-      <button class="dropbtn" onclick="toggleDropdown()">Menu</button>
-      <div id="dropdownMenu" class="dropdown-content">
-        <a href="faq-page.html">FAQ</a>
-        <a href="credits.html">Credits</a>
-        <a href="https://reddit.com/r/jailbreak">r/jailbreak</a>
-      </div>
-    </div>
-  </nav>
-
-  <div class="footer-text">Made with ⚡🥤 from Finland</div>
+  <div class="footer-text">Made with ⚡🥤 in Finland</div>
 
   <script>
     function detectIOSVersion() {
@@ -286,20 +286,6 @@
       }, 1500);
     }
 
-    function toggleDropdown() {
-      const dropdown = document.getElementById('dropdownMenu');
-      dropdown.classList.toggle('show');
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (const d of dropdowns) {
-          d.classList.remove('show');
-        }
-      }
-    }
-
     function toggleTheme() {
       const body = document.body;
       const current = body.classList.toggle('light');
@@ -316,6 +302,11 @@
       }
     }
 
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('open');
+    }
+
     window.onload = () => {
       detectIOSVersion();
       applySavedTheme();
@@ -323,4 +314,3 @@
   </script>
 </body>
 </html>
-
