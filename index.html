@@ -11,7 +11,7 @@
       --bg-color-end: #383a41;
       --text-color: white;
       --box-bg: rgba(255, 255, 255, 0.08);
-      --dropdown-bg: rgba(0, 0, 0, 0.92);
+      --dropdown-bg: rgba(0, 0, 0, 0.65);
     }
 
     body.light {
@@ -19,7 +19,7 @@
       --bg-color-end: #e0e0e0;
       --text-color: #111;
       --box-bg: rgba(0, 0, 0, 0.05);
-      --dropdown-bg: rgba(255, 255, 255, 0.96);
+      --dropdown-bg: rgba(255, 255, 255, 0.65);
     }
 
     body {
@@ -54,16 +54,38 @@
       font-weight: 500;
     }
 
-    #menuToggle {
+  
+    .menu-btn {
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: var(--text-color);
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
       z-index: 100;
+    }
+
+    .bar {
+      height: 4px;
+      width: 100%;
+      background-color: var(--text-color);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .menu.open + .menu-btn .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu.open + .menu-btn .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu.open + .menu-btn .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
     }
 
     .menu {
@@ -74,6 +96,8 @@
       height: 100vh;
       background-color: var(--dropdown-bg);
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
       padding: 30px 20px;
@@ -85,16 +109,6 @@
 
     .menu.open {
       right: 0;
-    }
-
-    .menu .close {
-      align-self: flex-end;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: var(--text-color);
-      cursor: pointer;
-      margin-bottom: 10px;
     }
 
     .menu .theme-toggle {
@@ -201,20 +215,39 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
+
+    @media (max-width: 500px) {
+      .title {
+        font-size: 1.8rem;
+        top: 15px;
+        left: 15px;
+      }
+      #tintedBox {
+        padding: 20px;
+        width: 90%;
+      }
+      .menu {
+        width: 85%;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="title">TrollStatus</div>
-  <button id="menuToggle" onclick="toggleMenu()">☰</button>
 
   <div class="menu" id="menu">
-    <button class="close" onclick="toggleMenu()">✖</button>
     <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
     <a href="#">Home</a>
     <a href="faq-page.html">FAQ</a>
     <a href="credits.html">Credits</a>
     <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
     <a href="https://ios.cfw.guide" target="_blank">Jailbreak Guide</a>
+  </div>
+
+  <div class="menu-btn" onclick="toggleMenu()" id="menuToggle">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </div>
 
   <div id="tintedBox">
@@ -272,7 +305,6 @@
 
           document.getElementById('message').innerText = message;
           document.getElementById('message').style.opacity = 1;
-
           document.getElementById('visitButton').style.display = showGuideButton ? 'inline-block' : 'none';
 
         } catch (error) {
@@ -300,9 +332,7 @@
 
     function toggleMenu() {
       const menu = document.getElementById('menu');
-      const toggleButton = document.getElementById('menuToggle');
-      const isOpen = menu.classList.toggle('open');
-      toggleButton.style.display = isOpen ? 'none' : 'inline';
+      menu.classList.toggle('open');
     }
 
     window.onload = () => {
