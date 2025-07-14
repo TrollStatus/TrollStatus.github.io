@@ -12,6 +12,8 @@
       --text-color: white;
       --box-bg: rgba(255, 255, 255, 0.08);
       --dropdown-bg: rgba(0, 0, 0, 0.65);
+      --glow-start: red;
+      --glow-end: limegreen;
     }
 
     body.light {
@@ -35,7 +37,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
       transition: background 0.5s ease, color 0.5s ease;
       overflow-x: hidden;
     }
@@ -54,16 +55,12 @@
       font-weight: 500;
     }
 
-  
     .menu-btn {
       position: absolute;
       top: 20px;
       right: 20px;
       width: 30px;
       height: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       cursor: pointer;
       z-index: 100;
     }
@@ -76,15 +73,15 @@
       transition: all 0.3s ease;
     }
 
-    .menu.open + .menu-btn .bar:nth-child(1) {
+    .menu-open .bar:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
 
-    .menu.open + .menu-btn .bar:nth-child(2) {
+    .menu-open .bar:nth-child(2) {
       opacity: 0;
     }
 
-    .menu.open + .menu-btn .bar:nth-child(3) {
+    .menu-open .bar:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
 
@@ -95,7 +92,6 @@
       width: 280px;
       height: 100vh;
       background-color: var(--dropdown-bg);
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex;
@@ -103,11 +99,12 @@
       padding: 30px 20px;
       transition: right 0.4s ease;
       z-index: 101;
+      border: 2px solid rgba(255, 255, 255, 0.15);
       border-top-left-radius: 15px;
       border-bottom-left-radius: 15px;
     }
 
-    .menu.open {
+    .menu.show {
       right: 0;
     }
 
@@ -122,36 +119,39 @@
     }
 
     .menu a {
-      position: relative;
       display: block;
-      padding: 12px 20px;
+      padding: 14px 24px;
       margin: 12px 0;
-      color: var(--text-color);
-      background: var(--box-bg);
-      border: 3px solid transparent;
-      border-radius: 14px;
+      color: white;
+      background: #111;
+      border: none;
+      border-radius: 40px;
       text-decoration: none;
       text-align: center;
       font-size: 16px;
       font-weight: 500;
+      position: relative;
       z-index: 1;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
     }
 
     .menu a::before {
-      content: "";
+      content: '';
       position: absolute;
       top: -2px;
       left: -2px;
       right: -2px;
       bottom: -2px;
-      border-radius: 16px;
-      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
-      background-size: 400% 400%;
-      animation: borderRGB 6s linear infinite;
+      border-radius: 40px;
+      background: linear-gradient(90deg, var(--glow-start), var(--glow-end), var(--glow-start));
+      background-size: 200% 200%;
+      filter: blur(6px);
       z-index: -1;
+      animation: glow 4s linear infinite;
     }
 
-    @keyframes borderRGB {
+    @keyframes glow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -167,7 +167,6 @@
       box-shadow: 0 0 12px rgba(0,0,0,0.3);
       backdrop-filter: blur(10px);
       margin-top: 80px;
-      transition: background 0.3s ease;
     }
 
     #image {
@@ -187,20 +186,30 @@
     #visitButton {
       display: none;
       margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #007BFF;
+      padding: 14px 28px;
+      background: #111;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 40px;
+      font-size: 15px;
       cursor: pointer;
-      font-size: 14px;
-      text-align: center;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
 
-    #visitButton:hover {
-      background-color: #0056b3;
+    #visitButton::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 40px;
+      background: linear-gradient(90deg, var(--glow-start), var(--glow-end), var(--glow-start));
+      background-size: 200% 200%;
+      filter: blur(6px);
+      z-index: -1;
+      animation: glow 4s linear infinite;
     }
 
     .footer-text {
@@ -244,7 +253,7 @@
     <a href="https://ios.cfw.guide" target="_blank">Jailbreak Guide</a>
   </div>
 
-  <div class="menu-btn" onclick="toggleMenu()" id="menuToggle">
+  <div class="menu-btn" id="menuToggle" onclick="toggleMenu()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
@@ -323,22 +332,4 @@
     }
 
     function applySavedTheme() {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'light') {
-        document.body.classList.add('light');
-        document.getElementById('themeToggle').innerText = '☀️';
-      }
-    }
-
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('open');
-    }
-
-    window.onload = () => {
-      detectIOSVersion();
-      applySavedTheme();
-    };
-  </script>
-</body>
-</html>
+      const saved = local
