@@ -4,153 +4,126 @@
   <meta charset="UTF-8">
   <title>FAQ - TrollStatus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Fira Sans Condensed', sans-serif;
-      height: 100vh;
-      background: linear-gradient(270deg, #0a3bc9, #383a41);
-      background-size: 400% 400%;
-      animation: gradient 6s ease infinite;
-      color: white;
+      font-family: 'Press Start 2P', monospace;
+      background: black url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      color: #00ff00;
+      text-shadow: 1px 1px 1px black;
+      height: 100%;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      min-height: 100vh;
     }
 
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .header {
+      text-align: center;
+      padding: 30px 10px;
+      background: #111;
+      border-bottom: 4px solid lime;
     }
 
-    .logo {
-      font-size: 3rem;
-      margin: 40px 0 20px 0;
-      font-weight: bold;
-      text-shadow: 2px 2px #000;
+    .header h1 {
+      font-size: 24px;
+      color: #00ff00;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      background: #222;
+      border-top: 2px solid lime;
+      border-bottom: 2px solid lime;
+    }
+
+    .nav a {
+      color: lime;
+      text-decoration: none;
+      background: #000;
+      padding: 8px 16px;
+      border: 2px solid lime;
+      display: inline-block;
+    }
+
+    .nav a:hover {
+      background: lime;
+      color: black;
     }
 
     .faq-box {
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 30px;
-      border-radius: 16px;
+      background-color: #111;
+      border: 4px double lime;
+      padding: 25px;
       max-width: 700px;
-      width: 90%;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+      margin: 40px auto 20px;
+      text-align: left;
+      box-shadow: 0 0 12px lime;
+      font-size: 10px;
+      line-height: 1.8;
     }
 
-    .faq-box h1 {
-      font-size: 2rem;
+    .faq-box h2 {
+      font-size: 14px;
+      color: lime;
       margin-bottom: 20px;
       text-align: center;
     }
 
     .faq-box ul {
       padding-left: 20px;
+      list-style: square;
     }
 
     .faq-box li {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    .dropbtn {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: transparent;
-      border: 2px solid white;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .dropbtn:hover {
-      background-color: white;
-      color: #0a3bc9;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 45px;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      border-radius: 12px;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #222;
+      margin-bottom: 12px;
     }
 
     .footer {
-      margin-top: auto;
+      background: #111;
+      color: lime;
+      text-align: center;
       padding: 20px;
-      font-size: 14px;
-      color: white;
-      opacity: 0.8;
+      border-top: 4px solid lime;
+      font-size: 10px;
+      margin-top: auto;
     }
   </style>
 </head>
 <body>
 
-  <div class="logo">TrollStatus</div>
+  <div class="header">
+    <h1>TrollStatus</h1>
+  </div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="credits.html">Credits</a>
+    <a href="https://reddit.com/r/jailbreak" target="_blank">Reddit</a>
+  </div>
 
   <div class="faq-box">
-    <h1>Frequently Asked Questions</h1>
+    <h2>Frequently Asked Questions</h2>
     <ul>
       <li><strong>What is this?</strong> – Just a very inconvenient project :P</li>
       <li><strong>Why?</strong> – I have too much time xD</li>
       <li><strong>Why does this site say my iOS version isn’t supported?</strong> – I probably messed something up, or it’s because you’re using an arm64 device. This site is aimed at arm64e devices currently.</li>
-      <li><strong>Found a bug?</strong> – Please report (un)expected errors to me in Reddit!</li>
+      <li><strong>Found a bug?</strong> – Please report (un)expected errors to me on Reddit!</li>
     </ul>
   </div>
 
-  <div class="dropdown">
-    <button class="dropbtn" onclick="toggleDropdown()">Menu</button>
-    <div class="dropdown-content" id="dropdownMenu">
-      <a href="index.html">Home</a>
-      <a href="credits.html">Credits</a>
-      <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
-    </div>
+  <div class="footer">
+    Made in Finland 🇫🇮
   </div>
-
-  <div class="footer">Made in Finland 🇫🇮</div>
-
-  <script>
-    function toggleDropdown() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (const d of dropdowns) {
-          d.style.display = "none";
-        }
-      }
-    }
-  </script>
 
 </body>
 </html>
