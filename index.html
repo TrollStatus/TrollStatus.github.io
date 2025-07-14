@@ -63,6 +63,7 @@
       border: none;
       color: var(--text-color);
       cursor: pointer;
+      z-index: 100;
     }
 
     #menuToggle {
@@ -74,7 +75,7 @@
       border: none;
       color: var(--text-color);
       cursor: pointer;
-      z-index: 101;
+      z-index: 100;
     }
 
     .menu {
@@ -89,7 +90,7 @@
       flex-direction: column;
       padding: 40px 20px;
       transition: right 0.4s ease;
-      z-index: 100;
+      z-index: 101;
     }
 
     .menu.open {
@@ -109,15 +110,15 @@
     .menu a {
       position: relative;
       display: block;
-      padding: 12px 24px;
+      padding: 10px 20px;
       margin: 10px 0;
       color: var(--text-color);
-      background: rgba(0, 0, 0, 0.2);
+      background: var(--box-bg);
+      border: 3px solid transparent;
       border-radius: 12px;
       text-decoration: none;
       text-align: center;
       font-size: 16px;
-      overflow: hidden;
       z-index: 1;
     }
 
@@ -129,19 +130,21 @@
       right: -2px;
       bottom: -2px;
       border-radius: 14px;
-      background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
-      animation: borderSpin 3s linear infinite;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400% 400%;
+      animation: borderRGB 6s linear infinite;
       z-index: -1;
-      filter: blur(4px);
+      filter: blur(0px);
     }
 
     .menu a:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    @keyframes borderSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    @keyframes borderRGB {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     #tintedBox {
@@ -171,7 +174,7 @@
       animation: fadeIn 1s ease forwards;
     }
 
-    .visit-button {
+    #visitButton {
       display: none;
       margin-top: 20px;
       padding: 12px 24px;
@@ -186,7 +189,7 @@
       transition: background-color 0.3s ease;
     }
 
-    .visit-button:hover {
+    #visitButton:hover {
       background-color: #0056b3;
     }
 
@@ -211,20 +214,21 @@
 
   <div class="menu" id="menu">
     <button class="close" onclick="toggleMenu()">✖</button>
+    <a href="#">Home</a>
     <a href="faq-page.html">FAQ</a>
     <a href="credits.html">Credits</a>
     <a href="https://reddit.com/r/jailbreak" target="_blank">r/jailbreak</a>
-    <a href="" target="_blank">Something cool happens with this button soon</a>
+    <a href="https://ios.cfw.guide" target="_blank">Jailbreak Guide</a>
   </div>
 
   <div id="tintedBox">
     <h2>Welcome to TrollStatus</h2>
+    <img id="image" src="" alt="trollface" />
     <p id="message">Detecting your device...</p>
-    <img id="image" src="" alt="trollface.jpg" />
-    <a id="visitButton" href="https://ios.cfw.guide" target="_blank" class="visit-button">Visit ios.cfw.guide</a>
+    <a id="visitButton" href="https://ios.cfw.guide" target="_blank">Visit ios.cfw.guide</a>
   </div>
 
-  <div class="footer-text">Made with ⚡🥤 in Finland</div>
+  <div class="footer-text">Made with ⚡🥤 from Finland</div>
 
   <script>
     function detectIOSVersion() {
@@ -304,7 +308,9 @@
 
     function toggleMenu() {
       const menu = document.getElementById('menu');
-      menu.classList.toggle('open');
+      const toggleButton = document.getElementById('menuToggle');
+      const isOpen = menu.classList.toggle('open');
+      toggleButton.style.display = isOpen ? 'none' : 'inline';
     }
 
     window.onload = () => {
