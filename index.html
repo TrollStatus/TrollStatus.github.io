@@ -11,7 +11,7 @@
       --bg-color-end: #383a41;
       --text-color: white;
       --box-bg: rgba(255, 255, 255, 0.08);
-      --dropdown-bg: rgba(0, 0, 0, 0.85);
+      --dropdown-bg: rgba(0, 0, 0, 0.92);
     }
 
     body.light {
@@ -19,7 +19,7 @@
       --bg-color-end: #e0e0e0;
       --text-color: #111;
       --box-bg: rgba(0, 0, 0, 0.05);
-      --dropdown-bg: rgba(255, 255, 255, 0.95);
+      --dropdown-bg: rgba(255, 255, 255, 0.96);
     }
 
     body {
@@ -54,23 +54,11 @@
       font-weight: 500;
     }
 
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 60px;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-      z-index: 100;
-    }
-
     #menuToggle {
       position: absolute;
       top: 20px;
       right: 20px;
-      font-size: 24px;
+      font-size: 26px;
       background: none;
       border: none;
       color: var(--text-color);
@@ -81,44 +69,57 @@
     .menu {
       position: fixed;
       top: 0;
-      right: -300px;
+      right: -320px;
       width: 280px;
       height: 100vh;
       background-color: var(--dropdown-bg);
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
-      padding: 40px 20px;
+      padding: 30px 20px;
       transition: right 0.4s ease;
       z-index: 101;
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
     }
 
     .menu.open {
       right: 0;
     }
 
-    .menu button.close {
+    .menu .close {
       align-self: flex-end;
       background: none;
       border: none;
       font-size: 24px;
       color: var(--text-color);
       cursor: pointer;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .menu .theme-toggle {
+      align-self: flex-start;
+      font-size: 22px;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      margin-bottom: 30px;
     }
 
     .menu a {
       position: relative;
       display: block;
-      padding: 10px 20px;
-      margin: 10px 0;
+      padding: 12px 20px;
+      margin: 12px 0;
       color: var(--text-color);
       background: var(--box-bg);
       border: 3px solid transparent;
-      border-radius: 12px;
+      border-radius: 14px;
       text-decoration: none;
       text-align: center;
       font-size: 16px;
+      font-weight: 500;
       z-index: 1;
     }
 
@@ -129,16 +130,11 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      border-radius: 14px;
+      border-radius: 16px;
       background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
       background-size: 400% 400%;
       animation: borderRGB 6s linear infinite;
       z-index: -1;
-      filter: blur(0px);
-    }
-
-    .menu a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
     }
 
     @keyframes borderRGB {
@@ -209,11 +205,11 @@
 </head>
 <body>
   <div class="title">TrollStatus</div>
-  <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
   <button id="menuToggle" onclick="toggleMenu()">☰</button>
 
   <div class="menu" id="menu">
     <button class="close" onclick="toggleMenu()">✖</button>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
     <a href="#">Home</a>
     <a href="faq-page.html">FAQ</a>
     <a href="credits.html">Credits</a>
@@ -277,25 +273,21 @@
           document.getElementById('message').innerText = message;
           document.getElementById('message').style.opacity = 1;
 
-          if (showGuideButton) {
-            document.getElementById('visitButton').style.display = 'inline-block';
-          } else {
-            document.getElementById('visitButton').style.display = 'none';
-          }
+          document.getElementById('visitButton').style.display = showGuideButton ? 'inline-block' : 'none';
 
         } catch (error) {
           console.error("An error occurred while detecting the iOS version:", error);
           document.getElementById('message').innerText = "An error occurred while detecting your device.";
         }
-      }, 1500);
+      }, 1200);
     }
 
     function toggleTheme() {
       const body = document.body;
-      const current = body.classList.toggle('light');
       const toggle = document.getElementById('themeToggle');
-      toggle.innerText = current ? '☀️' : '🌙';
-      localStorage.setItem('theme', current ? 'light' : 'dark');
+      const isLight = body.classList.toggle('light');
+      toggle.innerText = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
     }
 
     function applySavedTheme() {
